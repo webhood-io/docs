@@ -37,7 +37,7 @@ Other variables are optional and can be set later as documented [here](reference
 3. (Optional) Generate secrets automatically
 
 ```shell copy
-docker-compose run --rm migrate generate-secrets
+docker run --rm ghcr.io/webhood-io/migrate:latest generate-secrets
 ```
 This will generate the secrets for you and output them to the console. You can then copy them into your `.env` file.
 
