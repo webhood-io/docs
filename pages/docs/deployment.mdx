@@ -1,0 +1,59 @@
+# Deployment
+
+## Prerequisites
+
+- [Docker](https://docs.docker.com/install/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+- Common cli tools (e.g. `curl`, `wget`)
+- Git
+
+## Deployment
+
+1. Clone the deployment repo
+   This git repo contains the `docker-compose.yml` file as well as other deployment-only related files.
+
+```shell copy
+git clone https://github.com/webhood-io/webhood.git --depth=1 --branch=main
+cd webhood
+```
+
+2. Copy the example `.env` file in the root directory of the project and modify the following environment variables:
+
+```shell copy
+cp .env.example .env
+```
+
+```text filename=".env"
+POSTGRES_PASSWORD=
+JWT_SECRET=
+ANON_KEY=
+SERVICE_ROLE_KEY=
+EXTERNAL_URL=https://webhood.example.com
+...
+```
+
+Other variables are optional and can be set later as documented [here](reference/configuration).
+
+3. (Optional) Generate secrets automatically
+
+```shell copy
+docker-compose run --rm migrate generate-secrets
+```
+This will generate the secrets for you and output them to the console. You can then copy them into your `.env` file.
+
+4. Run `docker-compose up -d` to start the application
+
+import { Tab, Tabs } from "nextra-theme-docs"
+
+<Tabs items={["docker-compose", "docker"]}>
+  <Tab>
+      ```shell copy
+      docker-compose up -d
+      ```
+  </Tab>
+  <Tab>
+      ```shell copy
+      docker compose up -d
+      ```
+  </Tab>
+</Tabs>

@@ -1,0 +1,370 @@
+---
+title: Webhood - Yout Secure URL scanner
+description: Simple, private URL scanner keeping your sensitive data on your own premises.
+---
+
+import { useState } from "react"
+import Image from "next/image"
+import Link from "next/link"
+import cn from "clsx"
+
+import { Feature, Features } from "../components/features"
+import testImage from "../public/example-ups-dark.png"
+import testImageWhite from "../public/example-ups-light.png"
+import phishingImage from "../public/phishing.png"
+import phishStory from "../public/phishstory.png"
+import styles from "./index.module.css"
+
+export function File({ name, className, ...props }) {
+  return (
+    <span className={cn(styles.file, className)} {...props}>
+      {name}
+    </span>
+  )
+}
+
+export function Comparison({ a, b, invert, ...props }) {
+  return (
+    <div className={cn(styles.comparison, invert && styles.invert)} {...props}>
+      <div>{a}</div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="1.2em"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fillRule="evenodd"
+          d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+          clipRule="evenodd"
+        />
+      </svg>
+      <div>{b}</div>
+    </div>
+  )
+}
+
+export function I18n() {
+  const [active, setActive] = useState("")
+  return (
+    <Comparison
+      a={
+        <div style={{ display: "flex", flexDirection: "column", gap: ".5rem" }}>
+          <File
+            name="/hello.en-US.mdx"
+            className={active === "en" && styles.active}
+            onPointerOver={() => setActive("en")}
+          />
+          <File
+            name="/hello.de-DE.mdx"
+            className={active === "de" && styles.active}
+            onPointerOver={() => setActive("de")}
+          />
+          <File
+            name="/hello.ja-JP.mdx"
+            className={active === "ja" && styles.active}
+            onPointerOver={() => setActive("ja")}
+          />
+        </div>
+      }
+      b={
+        <div
+          style={{ display: "flex", flexDirection: "column" }}
+          className="menu overflow-auto rounded-md bg-white py-1 text-sm shadow-lg ring-1 ring-black ring-opacity-5 dark:bg-neutral-800 dark:ring-white dark:ring-opacity-20"
+        >
+          <span
+            className={cn(
+              "relative cursor-default select-none whitespace-nowrap px-4 py-1.5",
+              active === "en"
+                ? "nx-text-primary-600 nx-bg-primary-50 dark:nx-bg-primary-500/10"
+                : "text-gray-800 dark:text-gray-100 "
+            )}
+            onPointerOver={() => setActive("en")}
+          >
+            English
+          </span>
+          <span
+            className={cn(
+              "relative cursor-default select-none whitespace-nowrap px-4 py-1.5",
+              active === "de"
+                ? "nx-text-primary-600 nx-bg-primary-50 dark:nx-bg-primary-500/10"
+                : "text-gray-800 dark:text-gray-100 "
+            )}
+            onPointerOver={() => setActive("de")}
+          >
+            Deutsch
+          </span>
+          <span
+            className={cn(
+              "relative cursor-default select-none whitespace-nowrap px-4 py-1.5",
+              active === "ja"
+                ? "nx-text-primary-600 nx-bg-primary-50 dark:nx-bg-primary-500/10"
+                : "text-gray-800 dark:text-gray-100 "
+            )}
+            onPointerOver={() => setActive("ja")}
+          >
+            日本語
+          </span>
+        </div>
+      }
+    />
+  )
+}
+
+<div className="home-content">
+    <div className="content-container">
+        <h1 className="headline">Scan suspicious sites <br className='sm:block hidden'/>securely.</h1>
+        <p className="subtitle">Simple, private URL scanner <br className='sm:block hidden'/>keeping your sensitive data on your own premises.</p>
+        <p className="subtitle">
+            <Link className={styles.cta} href="/docs">Get started <span>→</span></Link>
+        </p>
+    </div>
+
+    <style jsx>{`
+    .content-container {
+      max-width: 90rem;
+      padding-left: max(env(safe-area-inset-left),1.5rem);
+      padding-right: max(env(safe-area-inset-right),1.5rem);
+      margin: 0 auto;
+    }
+    .features-container {
+      margin: 8rem 0 0;
+      padding: 4rem 0;
+      background-color: #f3f4f6;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .features-container .content-container {
+      margin-top: -8rem;
+    }
+    :global(.dark) .features-container {
+      background-color: #000;
+      border-bottom: 1px solid rgb(38,38,38);
+    }
+    .headline {
+      display: inline-block;
+      font-size: 3.125rem;
+      font-size: min(4.375rem, max(8vw, 2.5rem));
+      font-weight: 700;
+      font-feature-settings: initial;
+      letter-spacing: -.12rem;
+      margin-left: -0.2rem;
+      margin-top: 3.4rem;
+      line-height: 1.1;
+      background-image: linear-gradient(146deg,#000,#757a7d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    :global(.dark) .headline {
+      background-image: linear-gradient(146deg,#fff,#757a7d);
+    }
+    .subtitle {
+      font-size: 1.3rem;
+      font-size: min(1.3rem, max(3.5vw, 1.2rem));
+      font-feature-settings: initial;
+      line-height: 1.6;
+    }
+    .nextjs-link {
+      color: currentColor;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    :global(#docs-card) {
+      color: #fff;
+      text-shadow: 0 0 1rem rgba(0,0,0,0.1);
+    }
+    :global(#docs-card img) {
+      object-fit: cover;
+      object-position: left;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      height: 100%;
+      z-index: 0;
+      user-select: none;
+      pointer-events: none;
+    }
+    :global(#docs-card img:nth-child(2)) {
+      display: none;
+    }
+    :global(.dark #docs-card img:nth-child(2)) {
+      display: initial;
+    }
+    :global(.dark #docs-card img:nth-child(1)) {
+      display: none;
+    }
+    :global(#highlighting-card) {
+      min-height: 300px;
+      background-size: 634px;
+      background-position: -6px calc(100% + 4px);
+      background-repeat: no-repeat;
+    }
+    :global(.dark #highlighting-card) {
+    }
+    :global(.feat-darkmode) {
+      min-height: 300px;
+    }
+    :global(.feat-darkmode h3) {
+      font-size: 48px;
+    }
+    :global(#search-card) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    :global(#search-card p) {
+      max-width: 320px;
+    }
+    :global(#search-card video) {
+      position: absolute;
+      right: 0;
+      top: 0px;
+      height: 430px;
+      pointer-events: none;
+      max-width: 60%;
+    }
+    :global(#fs-card) {
+      min-height: 240px;
+    }
+    :global(#fs-card h3) {
+      text-align: left;
+      width: min(300px, 41%);
+      min-width: 155px;
+    }
+    :global(#a11y-card) {
+      background-position: -160px 160px;
+    }
+    @media screen and (max-width: 1300px) {
+      :global(#a11y-card) {
+      }
+    }
+    @media screen and (max-width: 1200px) {
+      :global(#highlighting-card) {
+        aspect-ratio: auto;
+      }
+      :global(.feat-darkmode h3) {
+        font-size: 4vw;
+        font-size: min(48px, max(4vw, 30px));
+      }
+      :global(#search-card video) {
+        aspect-ratio: 787/623;
+        height: auto;
+      }
+      .headline {
+        letter-spacing: -.08rem;
+      }
+    }
+    @media screen and (max-width: 1024px) {
+      :global(#docs-card) {
+        aspect-ratio: 135/86;
+      }
+      :global(#search-card) {
+        aspect-ratio: 8/3;
+      }
+      :global(#search-card h3) {
+        text-align: left;
+      }
+      :global(#highlighting-card) {
+        background-size: 136%;
+      }
+      :global(#a11y-card) {
+        background-position: center 160px;
+      }
+    }
+    @media screen and (max-width: 768px) {
+      :global(#docs-card) {
+        min-height: 348px;
+        width: 100%;
+        aspect-ratio: auto;
+      }
+      :global(#docs-card img) {
+        object-position: -26px 0;
+        width: 250%;
+        max-width: initial;
+      }
+    }
+    @media screen and (max-width: 640px) {
+      :global(#search-card) {
+        aspect-ratio: 2.5/2;
+        justify-content: flex-start;
+        align-items: stretch;
+        min-height: 350px;
+      }
+      :global(#search-card h3) {
+        text-align: center;
+      }
+      :global(#search-card p) {
+        max-width: 100%;
+      }
+      :global(#search-card video) {
+        position: relative;
+        margin: .75em -1.75em 0;
+        max-width: calc(100% + 3.5em);
+      }
+      :global(.dark #search-card video) {
+        mix-blend-mode: lighten;
+      }
+    }
+`}</style>
+
+    <div className="mt-32 py-16 bg-[#f3f4f6] border-b-[1px] border-solid border-[#e5e7eb] max-w-[90rem] p-6">
+        <div className="-mt-32">
+            <Features>
+                <Feature index={0} large centered id="docs-card" href="/docs/">
+                    <Image src={testImageWhite}/>
+                    <Image src={testImage}/>
+                    <h3>Get scan results <br className="show-on-mobile"/>in seconds.</h3>
+                </Feature>
+                <Feature index={1} centered className="card-with-border" href="/docs">
+                    <div className="h-full flex flex-col justify-between">
+                        <h3>Data is <br className="show-on-mobile"/>always <span style={{ fontWeight: 300 }}>where you decide it to be</span>.</h3>
+                        <p className='text-left mb-8'>Suspicious URLs may be phishing - they also may be confidential documents from your partner. </p>
+                        <div className={"items-center flex flex-col"}>
+                            <Image className={"dark:block"} src={phishStory} height={309}/>
+                        </div>
+                        Webhood enables you to safely check URLs and files without sharing the links on the internet.
+                    </div>
+                </Feature>
+                <Feature index={2} centered id="highlighting-card" href="/docs/deployment">
+                    <div className={"flex flex-col items-center h-full"}>
+                    <h3>As easy as...</h3>
+                    <p>Getting started is as easy as running few simple commands.</p>
+                    <div className={"h-full w-full flex items-center"}>
+                        <div className={"dark:bg-gradient-to-tr  rounded-md items-center flex justify-center from-[#3d3d3d] dark:to-[#252525] bg-slate-100 w-full h-20"}>
+                            {<code>docker-compose up</code>}
+                        </div>
+                    </div>
+                        See full <Link href="/docs/deployment">deployment guide for more</Link>.
+                    </div>
+                </Feature>
+                <Feature index={5} large id="search-card">
+                    <div style={{ zIndex: 2}}>
+                        <h3>Full HTML inspector, <br/>zero-config needed.</h3>
+                        <p>Webhood integrates a full code inspector for viewing the HTML source code of the scanned site.</p>
+                    </div>
+                    <div className="absolute w-full h-full inset-0 hidden sm:block bg-[linear-gradient(to_right,white_250px,_transparent)] dark:bg-[linear-gradient(to_right,#202020_250px,_transparent)] z-[1]"/>
+                    <video autoPlay="autoplay" loop muted playsInline className="dark:hidden block">
+                        <source src="/scan-html.mp4" type="video/mp4"/>
+                    </video>
+                    <video autoPlay="autoplay" loop muted playsInline className="dark:block hidden -translate-x-4">
+                        <source src="/scan-html.mp4" type="video/mp4"/>
+                    </video>
+                </Feature>
+                <Feature index={6} large id="fs-card" href="/docs/docs-theme/page-configuration">
+                    <Image
+                        className={"absolute top-0 left-0 w-full h-full object-cover"}
+                        src={phishingImage} alt="File-system routing" width={750} height={288}/>
+                    <h3 className={"text-white"}>Catch the bad guys phishing, <br/>before they catch your users.</h3>
+                </Feature>
+                <Feature index={7}>
+                    <h3>And more...</h3>
+                    <p>We are currently in Beta-phase constantly improving the capabilities.<br/>There are lot of new possibilities to be explored and more features are coming.</p>
+                    <p className="subtitle"><Link className="!no-underline" href="/docs">Start using Webhood →</Link></p>
+                </Feature>
+            </Features>
+        </div>
+    </div>
+
+</div>

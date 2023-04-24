@@ -1,0 +1,38 @@
+# Updates
+
+## Continuous updates
+
+To ensure smooth updates, Webhood utilizes semantic versioning in its version control. The versioning is applied as follows:
+
+- Major version: 1.0.0
+- Minor version: 1.1.0
+- Patch version: 1.1.1
+
+The major version is updated when there is a major change in the codebase making the new version incompatible with older version. The minor version is updated when there is a minor change in the codebase with backwards compatibility. The patch version is updated when there is a patch in the codebase such as bug fixes or security updates.
+
+You can read more about semantic versioning in [semver.org](https://semver.org).
+
+In practice, to ensure you are running the latest version of Webhood, you can simply use the default docker-compose file provided in the [Webhood repository](https://github.com/webhood-io/webhood). This file contains references to Webhood's own docker images referencing only the minor version meaning you are always using the latest the patch version. For docker images that are not part of Webhood (e.g. the database), we will use the latest version of the image that has been tested to function with Webhood.
+
+You may use other versions of the docker images if you wish. However, we do not provide support for any issues that may arise from using other versions of the docker images.
+
+With this, you can simply run `docker-compose pull` to pull the latest images and `docker-compose up -d` to start the containers.
+
+## Minor updates
+
+Minor updates are updates that are not breaking changes. They are usually new features or bug fixes.
+
+To update, pull the latest docker-compose file from the [Webhood repository](https://github.com/webhood-io/webhood) and run `docker-compose pull` to pull the latest images and `docker-compose up -d` to start the containers.
+
+```bash
+cd webhood # go to the Webhood directory
+git pull
+docker-compose pull
+docker-compose up -d
+```
+
+## Major updates
+
+Major updates are updates that are breaking changes. They are usually new features and/or changes that require you to perform some manual steps when updating. Major updates may also include changes to the database schema or the external API.
+
+Instructions for major updates are provided in the release notes of the [Webhood repository](https://github.com/webhood-io/webhood).
