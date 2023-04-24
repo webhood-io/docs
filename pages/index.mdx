@@ -3,10 +3,8 @@ title: Webhood - Yout Secure URL scanner
 description: Simple, private URL scanner keeping your sensitive data on your own premises.
 ---
 
-import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import cn from "clsx"
 
 import { Feature, Features } from "../components/features"
 import testImage from "../public/example-ups-dark.png"
@@ -14,102 +12,6 @@ import testImageWhite from "../public/example-ups-light.png"
 import phishingImage from "../public/phishing.png"
 import phishStory from "../public/phishstory.png"
 import styles from "./index.module.css"
-
-export function File({ name, className, ...props }) {
-  return (
-    <span className={cn(styles.file, className)} {...props}>
-      {name}
-    </span>
-  )
-}
-
-export function Comparison({ a, b, invert, ...props }) {
-  return (
-    <div className={cn(styles.comparison, invert && styles.invert)} {...props}>
-      <div>{a}</div>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="1.2em"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-      >
-        <path
-          fillRule="evenodd"
-          d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-          clipRule="evenodd"
-        />
-      </svg>
-      <div>{b}</div>
-    </div>
-  )
-}
-
-export function I18n() {
-  const [active, setActive] = useState("")
-  return (
-    <Comparison
-      a={
-        <div style={{ display: "flex", flexDirection: "column", gap: ".5rem" }}>
-          <File
-            name="/hello.en-US.mdx"
-            className={active === "en" && styles.active}
-            onPointerOver={() => setActive("en")}
-          />
-          <File
-            name="/hello.de-DE.mdx"
-            className={active === "de" && styles.active}
-            onPointerOver={() => setActive("de")}
-          />
-          <File
-            name="/hello.ja-JP.mdx"
-            className={active === "ja" && styles.active}
-            onPointerOver={() => setActive("ja")}
-          />
-        </div>
-      }
-      b={
-        <div
-          style={{ display: "flex", flexDirection: "column" }}
-          className="menu overflow-auto rounded-md bg-white py-1 text-sm shadow-lg ring-1 ring-black ring-opacity-5 dark:bg-neutral-800 dark:ring-white dark:ring-opacity-20"
-        >
-          <span
-            className={cn(
-              "relative cursor-default select-none whitespace-nowrap px-4 py-1.5",
-              active === "en"
-                ? "nx-text-primary-600 nx-bg-primary-50 dark:nx-bg-primary-500/10"
-                : "text-gray-800 dark:text-gray-100 "
-            )}
-            onPointerOver={() => setActive("en")}
-          >
-            English
-          </span>
-          <span
-            className={cn(
-              "relative cursor-default select-none whitespace-nowrap px-4 py-1.5",
-              active === "de"
-                ? "nx-text-primary-600 nx-bg-primary-50 dark:nx-bg-primary-500/10"
-                : "text-gray-800 dark:text-gray-100 "
-            )}
-            onPointerOver={() => setActive("de")}
-          >
-            Deutsch
-          </span>
-          <span
-            className={cn(
-              "relative cursor-default select-none whitespace-nowrap px-4 py-1.5",
-              active === "ja"
-                ? "nx-text-primary-600 nx-bg-primary-50 dark:nx-bg-primary-500/10"
-                : "text-gray-800 dark:text-gray-100 "
-            )}
-            onPointerOver={() => setActive("ja")}
-          >
-            日本語
-          </span>
-        </div>
-      }
-    />
-  )
-}
 
 <div className="home-content">
     <div className="content-container">
