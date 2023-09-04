@@ -46,6 +46,7 @@ This will generate the secrets for you and output them to the console. You can t
 ```shell copy
 random=$(openssl rand -base64 12) # generate some random string, or just make your own password
 docker compose run backend create_user -u admin -p $random
+echo "Password is:" $random
 ```
 
 5. Run `docker compose up -d` to start the application
