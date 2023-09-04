@@ -34,26 +34,38 @@ EXTERNAL_URL=https://webhood.example.com
 
 Other variables are optional and can be set later as documented [here](reference/configuration).
 
-3. (Optional) Generate secrets automatically
+3. Generate the secrets
 
 ```shell copy
 docker run --rm ghcr.io/webhood-io/migrate:latest generate-secrets
 ```
 This will generate the secrets for you and output them to the console. You can then copy them into your `.env` file.
 
-4. Run `docker-compose up -d` to start the application
+4. Create user
+
+```shell copy
+random=$(openssl rand -base64 12) # generate some random string, or just make your own password
+docker compose run backend create_user -u admin -p $random
+```
+
+5. Run `docker compose up -d` to start the application
 
 import { Tab, Tabs } from "nextra-theme-docs"
 
-<Tabs items={["docker-compose", "docker"]}>
-  <Tab>
-      ```shell copy
-      docker-compose up -d
-      ```
-  </Tab>
+<Tabs items={["docker", "docker-compose"]}>
   <Tab>
       ```shell copy
       docker compose up -d
       ```
   </Tab>
+  <Tab>
+      ```shell copy
+      docker-compose up -d
+      ```
+  </Tab>
 </Tabs>
+
+6. Start using
+
+Navigate to `http://localhost:8000` and login with the account you created in step `4`
+
