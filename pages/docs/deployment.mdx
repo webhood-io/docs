@@ -38,6 +38,7 @@ Other variables are optional and can be set later as documented [here](reference
 3. Generate the secrets
 
 ```shell copy
+docker compose backend run migrate
 docker run --rm ghcr.io/webhood-io/migrate:latest generate-secrets
 ```
 This will generate the secrets for you and output them to the console. You can then copy them into your `.env` file.
