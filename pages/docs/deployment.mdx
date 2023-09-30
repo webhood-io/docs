@@ -24,10 +24,6 @@ cp .env.example .env
 ```
 
 ```text filename=".env"
-POSTGRES_PASSWORD=
-JWT_SECRET=
-ANON_KEY=
-SERVICE_ROLE_KEY=
 EXTERNAL_URL=https://localhost:8443
 SCANNER_TOKEN=
 ...
@@ -35,23 +31,16 @@ SCANNER_TOKEN=
 
 Other variables are optional and can be set later as documented [here](reference/configuration).
 
-3. Generate the secrets
+3. Create a service token for the scanner
 
 ```shell copy
-docker compose backend run migrate
-docker run --rm ghcr.io/webhood-io/migrate:latest generate-secrets
-```
-This will generate the secrets for you and output them to the console. You can then copy them into your `.env` file.
-
-4. Create a service token for the scanner
-
-```shell copy
+docker compose run backend migrate
 docker compose run backend create_scanner_token
 ```
 
 Save this into your `.env` as `SCANNER_TOKEN`
 
-5. Run `docker compose up -d` to start the application
+4. Run `docker compose up -d` to start the application
 
 import { Tab, Tabs } from "nextra-theme-docs"
 
@@ -68,14 +57,13 @@ import { Tab, Tabs } from "nextra-theme-docs"
   </Tab>
 </Tabs>
 
-6. Create a user
+5. Create a user
 
 ```shell copy
 random=$(openssl rand -base64 16) # generate some random string, or just make your own password
 docker compose run backend create_user -u admin -p $random
 echo "Password is:" $random for user 'admin'
 ```
-
 
 
 7. Start using it
