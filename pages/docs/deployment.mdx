@@ -33,10 +33,22 @@ Other variables are optional and can be set later as documented [here](reference
 
 3. Create a service token for the scanner
 
-```shell copy
-docker compose run backend migrate
-docker compose run backend create_scanner_token
-```
+import { Tab, Tabs } from "nextra-theme-docs"
+
+<Tabs items={["docker", "docker-compose"]}>
+  <Tab>
+      ```shell copy
+         docker compose run backend migrate
+         docker compose run backend create_scanner_token
+      ```
+  </Tab>
+  <Tab>
+      ```shell copy
+         docker-compose run backend migrate
+         docker-compose run backend create_scanner_token
+      ```
+  </Tab>
+</Tabs>
 
 Save this into your `.env` as `SCANNER_TOKEN`
 
@@ -59,11 +71,22 @@ import { Tab, Tabs } from "nextra-theme-docs"
 
 5. Create a user
 
-```shell copy
-random=$(openssl rand -base64 16) # generate some random string, or just make your own password
-docker compose run backend create_user -u admin -p $random
-echo "Password is:" $random for user 'admin'
-```
+<Tabs items={["docker", "docker-compose"]}>
+  <Tab>
+      ```shell copy
+         random=$(openssl rand -base64 16) # generate some random string, or just make your own password
+         docker compose run backend create_user -u admin -p $random
+         echo "Password is:" $random for user 'admin'
+      ```
+  </Tab>
+  <Tab>
+      ```shell copy
+         random=$(openssl rand -base64 16) # generate some random string, or just make your own password
+         docker-compose run backend create_user -u admin -p $random
+         echo "Password is:" $random for user 'admin'
+      ```
+  </Tab>
+</Tabs>
 
 
 7. Start using it
