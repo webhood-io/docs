@@ -12,22 +12,16 @@ The following diagram shows the architecture of the application. The diagram sho
 ```mermaid
 %%{init: {"theme": "dark", "flowchart": {"htmlLabels": false, "defaultRenderer": "elk"}} }%%
 flowchart TD
-    U[User] --- K
-    K --- SG("\`Storage
-        *Stores scan files such as screenshots, html data*\`")
-    K --- A("\`Auth
-    *Session management and initial authentication*\`")
+    U[User] --- K(Reverse proxy - Kong)
+    K --- SG("\`PocketBase
+        *Backend stores for users, scan files such as screenshots, html data and metadata*\`")
     K --- WH("\`Webhood
         *UI and external API*\`")
-    K(Reverse proxy) --> PG(Database REST)
-    PG --- DB[(PostgreSQL)]
-    SC(Scanner engine) --> |Scan metadata|PG
-    SC ---|Scan files| SG
-    MG("\`Migrate
-    *Database migrations on deployment and if needed*\`") --> PG
+    SC(Scanner engine) --> |Scan metadata and files| SG
+    WH --- SG
 ```
 
-It is notable, that some components handle authentication / authorization themselves while some rely on the reverse proxy to do so. The reverse proxy is thus vital for the security of the application.
+PocketBase (the backend) is responsible for handling all authentication and authorization.
 
 ## Security considerations
 
