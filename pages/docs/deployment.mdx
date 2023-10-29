@@ -1,6 +1,8 @@
 import { Tab, Tabs } from "nextra-theme-docs"
+import { Card, Cards, FileTree } from 'nextra/components'
+import {Cog, Lock, RefreshCcw} from 'lucide-react'
 
-# Deployment
+# Deployment guide
 
 ## Prerequisites
 
@@ -39,12 +41,16 @@ Other variables are optional and can be set later as documented [here](reference
   <Tab>
       ```shell copy
          docker compose run backend migrate
+      ```
+      ```shell copy
          docker compose run backend create_scanner_token
       ```
   </Tab>
   <Tab>
       ```shell copy
          docker-compose run backend migrate
+      ```
+      ```shell copy
          docker-compose run backend create_scanner_token
       ```
   </Tab>
@@ -73,15 +79,13 @@ Save this into your `.env` as `SCANNER_TOKEN`
   <Tab>
       ```shell copy
          random=$(openssl rand -base64 16) # generate some random string, or just make your own password
-         docker compose run backend create_user -u admin -p $random
-         echo "Password is:" $random for user 'admin'
+         docker compose run backend create_user -u admin -p $random && echo "Password is:" $random for user 'admin'
       ```
   </Tab>
   <Tab>
       ```shell copy
          random=$(openssl rand -base64 16) # generate some random string, or just make your own password
-         docker-compose run backend create_user -u admin -p $random
-         echo "Password is:" $random for user 'admin'
+         docker-compose run backend create_user -u admin -p $random && echo "Password is:" $random for user 'admin'
       ```
   </Tab>
 </Tabs>
@@ -89,5 +93,24 @@ Save this into your `.env` as `SCANNER_TOKEN`
 
 7. Start using it
 
-Navigate to `http://localhost:8443` and login with the account you created in step `6`
+Navigate to [`http://localhost:8443`](http://localhost:8443) and login with the account you created in step `6`
 
+## Next steps
+
+<Cards>
+  <Card
+    title="Configuration reference"
+    href="/docs/reference/configuration"
+    icon={<Cog />}
+  />
+  <Card
+    title="Security"
+    href="/docs/security"
+    icon={<Lock />}
+  />
+  <Card
+    title="Updating Webhood"
+    href="/docs/updates"
+    icon={<RefreshCcw />}
+  />
+</Cards>
