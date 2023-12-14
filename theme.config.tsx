@@ -39,7 +39,7 @@ const SourceSansPro = Source_Sans_Pro({
 const config: DocsThemeConfig = {
   logo,
   project: {
-    link: "https://github.com/webhood-io/mainsite",
+    link: "https://github.com/webhood-io/webhood",
   },
   docsRepositoryBase: "https://github.com/webhood-io/mainsite/tree/main/",
   nextThemes: {},
