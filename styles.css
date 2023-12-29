@@ -55,3 +55,6 @@ code.text-\[\.9em\] {
         filter: invert(100%) hue-rotate(180deg);
     }
   }
+pre code { /* Override tailwind breaking formatting in swagger-ui */
+    display: block !important;
+}
