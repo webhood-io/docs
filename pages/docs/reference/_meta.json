@@ -1,4 +1,10 @@
 {
   "configuration": "Configuration variables",
-  "api": "API documentation"
+  "api": {
+    "title": "API",
+    "description": "API documentation",
+    "theme": {
+      "layout": "full"
+    }
+  }
 }
