@@ -79,6 +79,9 @@
           "400": {
             "description": "Something went wrong while processing your request"
           },
+          "401": {
+            "description": "The request requires valid record authorization token to be set"
+          },
           "403": {
             "description": "Authentication or authorization failure"
           }
@@ -126,6 +129,9 @@
           "400": {
             "description": "Something went wrong while processing your request"
           },
+          "401": {
+            "description": "The request requires valid record authorization token to be set"
+          },
           "403": {
             "description": "Authentication or authorization failure"
           }
@@ -165,6 +171,9 @@
           "400": {
             "description": "Invalid ID supplied"
           },
+          "401": {
+            "description": "The request requires valid record authorization token to be set"
+          },
           "404": {
             "description": "Scan not found"
           },
@@ -202,6 +211,9 @@
           },
           "400": {
             "description": "Invalid ID supplied"
+          },
+          "401": {
+            "description": "The request requires valid record authorization token to be set"
           },
           "404": {
             "description": "Scan not found"
