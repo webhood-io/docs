@@ -1,0 +1,345 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Webhood - Beta API",
+    "description": "This is the OpenAPI 3.1.0 schema for the Webhood URL scanner API",
+    "contact": {
+      "email": "contact@webhood.io"
+    },
+    "version": "1.0.0"
+  },
+  "externalDocs": {
+    "description": "Find out more about Webhood URL Scanner",
+    "url": "https://webhood.io"
+  },
+  "servers": [
+    {
+      "url": "{host}/api/beta",
+      "variables": {
+        "host": {
+          "default": "https://localhost:8443",
+          "description": "The host running Webhood"
+        }
+      }
+    },
+    {
+      "url": "https://demo.webhood.io/api/beta"
+    }
+  ],
+  "tags": [
+    {
+      "name": "scanner",
+      "description": "Operations about scanner"
+    }
+  ],
+  "paths": {
+    "/scans": {
+      "post": {
+        "summary": "Creates a new scan",
+        "description": "Create a new scan to be initiated by the scanner",
+        "operationId": "initScan",
+        "tags": [
+          "scanner"
+        ],
+        "requestBody": {
+          "description": "Create a new scan to be initiated by the scanner",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScanRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "Successfully initiated scan",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": "xdxwguyzz2asq4j",
+                  "created": "2023-03-28T17:30:01.013525+00:00",
+                  "updated": "2023-03-28T17:30:01.013525+00:00",
+                  "done_at": "",
+                  "slug": "google.com-1680024600766",
+                  "url": "http://google.com",
+                  "final_url": "",
+                  "status": "pending",
+                  "screenshots": [],
+                  "html": [],
+                  "error": ""
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Scan"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Something went wrong while processing your request"
+          },
+          "403": {
+            "description": "Authentication or authorization failure"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "scanner"
+        ],
+        "summary": "Get past scans, optinally filter by status",
+        "operationId": "getScans",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Status values that need to be considered for filter",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "default": "done",
+              "enum": [
+                "pending",
+                "done",
+                "running",
+                "error"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Scan"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Something went wrong while processing your request"
+          },
+          "403": {
+            "description": "Authentication or authorization failure"
+          }
+        }
+      }
+    },
+    "/scans/{scanId}": {
+      "get": {
+        "tags": [
+          "scanner"
+        ],
+        "summary": "Get scan by ID",
+        "description": "Returns a single scan",
+        "operationId": "getScanById",
+        "parameters": [
+          {
+            "name": "scanId",
+            "in": "path",
+            "description": "ID of scan to return",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Scan"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Scan not found"
+          },
+          "403": {
+            "description": "Authentication or authorization failure"
+          }
+        }
+      }
+    },
+       "/scans/{scanId}/screenshot": {
+      "get": {
+        "tags": [
+          "scanner"
+        ],
+        "summary": "Get screenshot by scan ID",
+        "description": "Returns a screenshot of a successful scan",
+        "operationId": "getScreenshotByScanId",
+        "parameters": [
+          {
+            "name": "scanId",
+            "in": "path",
+            "description": "ID of scan to return",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "image/png": {}
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Scan not found"
+          },
+          "403": {
+            "description": "Authentication or authorization failure"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ScanRequest": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "examples": [
+              "https://google.com"
+            ]
+          }
+        }
+      },
+      "Scan": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "examples": [
+              "xdxwguyzz2asq4j"
+            ]
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "examples": [
+              "2023-03-28T17:30:01.013525+00:00"
+            ]
+          },
+          "updated": {
+            "type": "string",
+            "format": "date-time",
+            "examples": [
+              "2023-03-28T17:30:01.013525+00:00"
+            ]
+          },
+          "done_at": {
+            "type": "string",
+            "format": "date-time",
+            "examples": [
+              "2023-03-28T17:35:01.013525+00:00"
+            ]
+          },
+          "slug": {
+            "type": "string",
+            "examples": [
+              "google.com-1680024600766"
+            ]
+          },
+          "url": {
+            "type": "string",
+            "examples": [
+              "https://google.com"
+            ]
+          },
+          "final_url": {
+            "type": "string",
+            "examples": [
+              "https://www.google.com/"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "description": "Scan Status",
+            "examples": [
+              "done"
+            ],
+            "enum": [
+              "pending",
+              "done",
+              "error",
+              "running"
+            ]
+          },
+          "screenshots": {
+            "type": "array",
+            "description": "identifiers for files containing the screenshots",
+            "examples": [
+              [
+                "0e158365_cb22_47cc_9617_c944c5b80a01_lK0p6dA6bM.png"
+              ]
+            ]
+          },
+          "html": {
+            "type": "array",
+            "description": "identifiers for other files gathered during the scan",
+            "examples": [
+              [
+                "bf1a2cfb_7e3b_4d5d_8705_07891d883d5c_57BDbD8BrR.html",
+                "trace_ir1b4f30x2y5umn_SwUKj9ocpw.json"
+              ]
+            ]
+          },
+          "error": {
+            "type": "string",
+            "description": "description of what error occurred during the scan if the scan did not finish successfully",
+            "examples": [
+              "",
+              "Error while getting final url, url might be invalid. Final URL was: chrome-error://chromewebdata/"
+            ]
+          }
+        }
+      }
+    },
+    "requestBodies": {
+      "Scan": {
+        "description": "Scan object that needs to be input when creating new scan",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ScanRequest"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}
