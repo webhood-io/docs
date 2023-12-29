@@ -160,7 +160,7 @@
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.22.10.tgz#e37634f9a12a1716136c44624ef54283cabd3f55"
   integrity sha512-lNbdGsQb9ekfsnjFGhEiF4hfFqGgfOP3H3d27re3n+CGhNuTSUEQdfWk556sTLNTloczcdM5TYF2LhzmDQKyvQ==
 
-"@babel/runtime-corejs3@^7.20.7", "@babel/runtime-corejs3@^7.22.15", "@babel/runtime-corejs3@^7.23.2":
+"@babel/runtime-corejs3@^7.20.7", "@babel/runtime-corejs3@^7.22.15", "@babel/runtime-corejs3@^7.23.5":
   version "7.23.6"
   resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.23.6.tgz#c25dd662fc205a03fdaefd122066eb9d4533ccf9"
   integrity sha512-Djs/ZTAnpyj0nyg7p1J6oiE/tZ9G2stqAFlLGZynrW+F3k2w2jGK2mLOBxzYIOcZYA89+c3d3wXKpYLcpwcU6w==
@@ -4708,7 +4708,7 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
-swagger-client@^3.24.5:
+swagger-client@^3.24.6:
   version "3.24.6"
   resolved "https://registry.yarnpkg.com/swagger-client/-/swagger-client-3.24.6.tgz#7e255bb802b694e53e966406918be47f75a1c559"
   integrity sha512-vgolnwLjsLCLe3mA9yOuXqmslVzxRpjz0fTBWwPtDGvYSU8FMVra0FGevw+N2OQ80UE1rOqgv4Te0AfvzMyR8g==
@@ -4730,12 +4730,12 @@ swagger-client@^3.24.5:
     traverse "~0.6.6"
     undici "^5.24.0"
 
-swagger-ui-react@5.9.4:
-  version "5.9.4"
-  resolved "https://registry.yarnpkg.com/swagger-ui-react/-/swagger-ui-react-5.9.4.tgz#6f51b51d3f7e60492b8cb23c2fb3342613b8bb7c"
-  integrity sha512-VEY+QuNtRkidR/Os81zq22TpbXkfFDJ2pB6UF+J5sgrf2zksPr2oQGADpWn6RkYXXudZcalXUjcUqgx8WgIfaA==
+swagger-ui-react@5.10.5:
+  version "5.10.5"
+  resolved "https://registry.yarnpkg.com/swagger-ui-react/-/swagger-ui-react-5.10.5.tgz#a9da3c452599530b1df4e1c7860c2888f683c617"
+  integrity sha512-uBQLku4j3L1NC4/xE3HTgz1EcFisBphh8AnGqbj9LMxeGGcpKOlx/ZDigRAeVXWr9jOnZZbeGBzMe4NVHxPZrQ==
   dependencies:
-    "@babel/runtime-corejs3" "^7.23.2"
+    "@babel/runtime-corejs3" "^7.23.5"
     "@braintree/sanitize-url" "=6.0.4"
     base64-js "^1.5.1"
     classnames "^2.3.1"
@@ -4764,7 +4764,7 @@ swagger-ui-react@5.9.4:
     reselect "^4.1.8"
     serialize-error "^8.1.0"
     sha.js "^2.4.11"
-    swagger-client "^3.24.5"
+    swagger-client "^3.24.6"
     url-parse "^1.5.10"
     xml "=1.0.1"
     xml-but-prettier "^1.0.1"
