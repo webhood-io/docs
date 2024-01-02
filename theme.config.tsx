@@ -1,5 +1,4 @@
 import React from "react"
-import { Source_Sans_Pro } from "next/font/google"
 import { DocsThemeConfig, useConfig } from "nextra-theme-docs"
 
 const logo = (
@@ -31,11 +30,6 @@ const logo = (
   </span>
 )
 
-const SourceSansPro = Source_Sans_Pro({
-  weight: "700",
-  style: "normal",
-  subsets: ["latin"],
-})
 const config: DocsThemeConfig = {
   logo,
   project: {
