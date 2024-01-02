@@ -243,12 +243,14 @@
         "properties": {
           "id": {
             "type": "string",
+            "description": "Unique identifier for the scan",
             "examples": [
               "xdxwguyzz2asq4j"
             ]
           },
           "created": {
             "type": "string",
+            "description": "Date and time when the scan was created",
             "format": "date-time",
             "examples": [
               "2023-03-28T17:30:01.013525+00:00"
@@ -256,6 +258,7 @@
           },
           "updated": {
             "type": "string",
+            "description": "Date and time when the scan was last updated",
             "format": "date-time",
             "examples": [
               "2023-03-28T17:30:01.013525+00:00"
@@ -263,6 +266,7 @@
           },
           "done_at": {
             "type": "string",
+            "description": "Date and time when the scan was completed",
             "format": "date-time",
             "examples": [
               "2023-03-28T17:35:01.013525+00:00"
@@ -270,18 +274,21 @@
           },
           "slug": {
             "type": "string",
+            "description": "Unique identifier for the scan that can be used to generate a link to the scan",
             "examples": [
               "google.com-1680024600766"
             ]
           },
           "url": {
             "type": "string",
+            "description": "URL that was scanned",
             "examples": [
               "https://google.com"
             ]
           },
           "final_url": {
             "type": "string",
+            "description": "URL that was scanned after redirects",
             "examples": [
               "https://www.google.com/"
             ]
@@ -301,7 +308,11 @@
           },
           "screenshots": {
             "type": "array",
-            "description": "identifiers for files containing the screenshots",
+            "description": "Identifiers for files containing the screenshots",
+            "items": {
+              "type": "string",
+              "description": "Identifier for files containing the screenshots"
+            },
             "examples": [
               [
                 "0e158365_cb22_47cc_9617_c944c5b80a01_lK0p6dA6bM.png"
@@ -311,6 +322,10 @@
           "html": {
             "type": "array",
             "description": "identifiers for other files gathered during the scan",
+            "items": {
+              "type": "string",
+              "description": "Identifier for other files gathered during the scan"
+            },
             "examples": [
               [
                 "bf1a2cfb_7e3b_4d5d_8705_07891d883d5c_57BDbD8BrR.html",
@@ -320,7 +335,7 @@
           },
           "error": {
             "type": "string",
-            "description": "description of what error occurred during the scan if the scan did not finish successfully",
+            "description": "Description of what error occurred during the scan if the scan did not finish successfully",
             "examples": [
               "",
               "Error while getting final url, url might be invalid. Final URL was: chrome-error://chromewebdata/"
