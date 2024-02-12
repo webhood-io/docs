@@ -88,7 +88,10 @@ const config: DocsThemeConfig = {
 
     return {
       titleTemplate: "%s - Webhood",
-      url,
+      url: url,
+      openGraph: {
+        url
+      },
       description:
         frontMatter.description || "Webhood - Self-hosted URL Scanner",
     }
