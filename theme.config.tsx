@@ -84,7 +84,7 @@ const config: DocsThemeConfig = {
     const { frontMatter } = useConfig()
     const { asPath } = useRouter()
     const url =
-      'https://www.webhood.io' + `/${asPath}`
+      'https://www.webhood.io' + `${asPath}`
 
     return {
       titleTemplate: "%s - Webhood",
