@@ -1,5 +1,6 @@
 import React from "react"
 import { DocsThemeConfig, useConfig } from "nextra-theme-docs"
+import { useRouter } from "next/router"
 
 const logo = (
   <span>
@@ -81,8 +82,13 @@ const config: DocsThemeConfig = {
   ),
   useNextSeoProps() {
     const { frontMatter } = useConfig()
+    const { asPath } = useRouter()
+    const url =
+      'https://www.webhood.io' + `/${asPath}`
+
     return {
       titleTemplate: "%s - Webhood",
+      url,
       description:
         frontMatter.description || "Webhood - Self-hosted URL Scanner",
     }
