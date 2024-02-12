@@ -1,10 +1,27 @@
-import React from "react"
-import { DocsThemeConfig, useConfig } from "nextra-theme-docs"
-
-const logo = (
-  <span>
-    <svg
-      width="150"
+import { ImageResponse } from '@vercel/og';
+ 
+export const config = {
+  runtime: 'edge',
+};
+ 
+export default async function handler() {
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          display: 'flex',
+          fontSize: 40,
+          color: 'black',
+          background: 'white',
+          width: '100%',
+          height: '100%',
+          textAlign: 'center',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+            <svg
+      width="450"
       viewBox="0 0 116.8109 21.166669"
       version="1.1"
       id="svg1298"
@@ -26,47 +43,12 @@ const logo = (
         </g>
       </g>
     </svg>
-    <style jsx>{``}</style>
-  </span>
-)
-
-const config: DocsThemeConfig = {
-  logo,
-  project: {
-    link: "https://github.com/webhood-io/webhood",
-  },
-  docsRepositoryBase: "https://github.com/webhood-io/mainsite/tree/main/",
-  nextThemes: {},
-  footer: {
-    text: (
-      <span>
-        {new Date().getFullYear()} ©{" "}
-        <a href="https://webhood.io" target="_blank">
-          Webhood.io
-        </a>
-        .
-      </span>
+        
+      </div>
     ),
-  },
-  head: (
-    <>
-      <link rel="icon" type="image/svg+xml" href="/logo/logo.svg" />
-      <link rel="apple-touch-icon" sizes="180x180" href="/logo/apple-touch-icon.png" />
-      <link rel="icon" type="image/png" sizes="32x32" href="/logo/favicon-32x32.png"/>
-      <link rel="icon" type="image/png" sizes="16x16" href="/logo/favicon-16x16.png"/>
-      <link rel="manifest" href="/logo/site.webmanifest"/>
-      <link rel="mask-icon" href="/logo/safari-pinned-tab.svg" color="#5bbad5"/>
-      <meta name="msapplication-TileColor" content="#da532c"/>
-      <meta name="theme-color" content="#ffffff"></meta>
-    </>
-  ),
-  useNextSeoProps() {
-    const { frontMatter } = useConfig()
-    return {
-      titleTemplate: "%s - Webhood",
-      description: frontMatter.description || "Webhood - Self-hosted URL Scanner",
-    }
-  },
+    {
+      width: 500,
+      height: 500,
+    },
+  );
 }
-
-export default config
