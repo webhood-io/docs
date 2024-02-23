@@ -90,10 +90,23 @@ Save this into your `.env` as `SCANNER_TOKEN`
   </Tab>
 </Tabs>
 
-
 7. Start using it
 
 Navigate to [`https://localhost:8443`](https://localhost:8443) and login with the account you created in step `6`
+
+## Known issues
+
+### Invalid interpolation format for "environment" option...
+
+**Cause**: The docker-compose.yaml file includes some [interpolation](https://docs.docker.com/compose/compose-file/12-interpolation/) magic to set correct configuration values from the .env file if they exist. Support for interpolation may not exist in older docker-compose versions.
+
+**Solution**: To resolve this error, you need to either:
+
+1. Install the latest version of [docker compose](https://docs.docker.com/compose/install/)
+
+or 
+
+2. Remove / manually set environment variable of the lines that produce the error in the `docker-compose.yaml` file.
 
 ## Next steps
 
