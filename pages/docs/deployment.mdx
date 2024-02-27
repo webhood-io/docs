@@ -1,6 +1,7 @@
 import { Tab, Tabs } from "nextra-theme-docs"
 import { Card, Cards, FileTree } from 'nextra/components'
 import {Cog, Lock, RefreshCcw} from 'lucide-react'
+import { Callout } from 'nextra/components'
 
 # Deployment guide
 
@@ -10,6 +11,10 @@ import {Cog, Lock, RefreshCcw} from 'lucide-react'
 - [Docker Compose](https://docs.docker.com/compose/install/)
 - Common cli tools (e.g. `curl`, `wget`)
 - Git
+
+<Callout type="info" emoji="ℹ️">
+  This guide assumes that you have Docker Compose V2 installed either as [Docker plugin](https://docs.docker.com/compose/install/) (`docker compose`) or as [standalone](https://docs.docker.com/compose/install/standalone/) (`docker-compose`). See [note](https://docs.docker.com/compose/migrate/) about migrating to V2.
+</Callout>
 
 ## Deployment
 
