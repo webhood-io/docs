@@ -11,6 +11,11 @@
     "type": "page",
     "title": "Documentation"
   },
+  "getstarted": {
+    "title": "Get Started",
+    "href": "/docs/deployment",
+    "type": "page"
+  },
   "cloud": {
     "type": "page",
     "title": "Cloud 🚀"
