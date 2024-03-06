@@ -11,6 +11,10 @@
     "type": "page",
     "title": "Documentation"
   },
+  "cloud": {
+    "type": "page",
+    "title": "Cloud 🚀"
+  },
   "contact": {
     "title": "Contact ↗",
     "type": "page",
