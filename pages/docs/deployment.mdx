@@ -12,7 +12,7 @@ import { Callout } from 'nextra/components'
 - Common cli tools (e.g. `curl`, `wget`)
 - Git
 
-<Callout type="info" emoji="ℹ️">
+<Callout type="info">
   This guide assumes that you have Docker Compose V2 installed either as [Docker plugin](https://docs.docker.com/compose/install/) (`docker compose`) or as [standalone](https://docs.docker.com/compose/install/standalone/) (`docker-compose`). See [note](https://docs.docker.com/compose/migrate/) about migrating to V2.
 </Callout>
 
@@ -26,19 +26,13 @@ git clone https://github.com/webhood-io/webhood.git --depth=1 --branch=main
 cd webhood
 ```
 
-2. Copy the example `.env` file in the root directory of the project and modify the following environment variables:
+2. Copy the example `.env` file in the root directory of the project:
 
 ```shell copy
 cp .env.example .env
 ```
 
-```text filename=".env"
-EXTERNAL_URL=https://localhost:8443
-SCANNER_TOKEN=
-...
-```
-
-Other variables are optional and can be set later as documented [here](reference/configuration).
+Next, we configure the only required variable `SCANNER_TOKEN`. Other variables are optional and can be set later as documented [here](reference/configuration).
 
 3. Create a service token for the scanner
 

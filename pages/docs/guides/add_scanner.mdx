@@ -1,0 +1,176 @@
+import { Tab, Tabs } from "nextra-theme-docs"
+import { Callout } from 'nextra/components'
+
+# Add a scanner
+
+This guide will show you how to add a scanner to connect to your console. Scanner is the component that runs the scans and reports the results back to the console.
+
+<Callout type="info">
+  If you followed the [deployment guide](/docs/deployment), you should already have a scanner running in the same host as the UI and the backend (i.e. the console). This guide is for adding additional scanners.
+</Callout>
+
+## Prerequisites
+
+- A console up and running ([see deployment guide](/docs/deployment)).
+- Host that you can run the scanner on. This guide will assume one of the following:
+  - docker
+  - docker-compose
+- Connectivity from the scanner to the console. If you are running the scanner on a different network, you will need to open the console port to the scanner network. Default port for the console is `8000` if using the deployment guide.
+
+## Steps
+
+### In the console
+
+1. Run command to create the scanner
+
+These commands assume you have deployed the console using the [docker-compose.yml](https://github.com/webhood-io/webhood/blob/main/docker-compose.yml).
+
+<Tabs items={["docker compose", "docker-compose", "docker"]}>
+  <Tab>
+      ```shell copy
+         docker compose run backend create_scanner_token
+      ```
+  </Tab>
+  <Tab>
+      ```shell copy
+         docker-compose run backend create_scanner_token
+      ```
+  </Tab>
+  <Tab>
+      ```shell copy
+         docker exec -it webhood-scanner sh -c /pb/backend create_scanner_token
+      ```
+      Where `webhood-scanner` is the name of the container running the [backend image](https://github.com/webhood-io/webhood/pkgs/container/webhood%2Fbackend).
+  </Tab>
+</Tabs>
+This returns
+      ```shell
+         SCANNER_TOKEN=ey....
+      ```
+
+### In the scanner host
+
+1. Create a `.env` file with the scanner token
+
+```shell copy
+SCANNER_TOKEN=ey....
+ENDPOINT=http://console-address:8000
+``` 
+
+Where `http://console-address:8000` is the address of the console. If you are running the console on a different port or network, you will need to change the `ENDPOINT` variable.
+
+2. Download the [seccomp](https://en.wikipedia.org/wiki/Seccomp) profile for the scanner
+
+```shell copy
+curl -o chrome.json https://raw.githubusercontent.com/webhood-io/webhood/main/files/chrome.json
+```
+
+<Tabs items={["docker compose", "docker-compose", "docker"]}>
+  <Tab>
+3. Create a `docker-compose.yml` file with the scanner configuration
+
+```yaml copy
+services:
+  scanner:
+    container_name: webhood-scanner
+    image: ghcr.io/webhood-io/webhood/scanner:latest
+    restart: always
+    environment:
+      ENDPOINT: ${ENDPOINT}
+      SCANNER_TOKEN: ${SCANNER_TOKEN}
+    security_opt:
+      # Use seccomp to restrict the syscalls that the container can make for Chrome
+      # This allows us to run chrome with sandboxing enabled without having to run the whole container as root
+      - seccomp=./chrome.json
+      ```
+4. Run the scanner and check for any errors
+
+      ```shell copy
+         docker compose up
+      ```
+
+It is a good idea to now initiate some scans in the console to see if the scanner is working correctly.
+
+5. If no errors, you can start the scanner as a daemon
+
+      ```shell copy
+         docker compose up -d
+      ```
+  </Tab>
+  <Tab>
+3. Create a `docker-compose.yml` file with the scanner configuration
+
+```yaml copy
+services:
+  scanner:
+    container_name: webhood-scanner
+    image: ghcr.io/webhood-io/webhood/scanner:latest
+    restart: always
+    environment:
+      ENDPOINT: ${ENDPOINT}
+      SCANNER_TOKEN: ${SCANNER_TOKEN}
+    security_opt:
+      # Use seccomp to restrict the syscalls that the container can make for Chrome
+      # This allows us to run chrome with sandboxing enabled without having to run the whole container as root
+      - seccomp=./chrome.json
+      ```
+4. Run the scanner and check for any errors
+
+      ```shell copy
+         docker-compose up
+      ```
+
+It is a good idea to now initiate some scans in the console to see if the scanner is working correctly.
+
+5. If no errors, you can start the scanner as a daemon
+
+      ```shell copy
+         docker-compose up -d
+      ```
+  </Tab>
+  <Tab>
+  3. Start the scanner
+
+    ```shell copy
+    # docker run equivalent of the docker-compose.yml
+    docker run -d \
+        --name webhood-scanner \
+        --env-file .env \
+        --security-opt seccomp=./chrome.json \
+        ghcr.io/webhood-io/webhood/scanner:latest
+      ```
+
+  </Tab>
+</Tabs>
+
+## Additional configuration
+
+### Additional scanners
+
+The `create_scanner_token` command with no arguments will create a new scanner token for the default scanner present in all installations. 
+
+To create a token for an additional scanner, you can run
+
+<Tabs items={["docker compose", "docker-compose", "docker"]}>
+  <Tab>
+```shell copy
+docker compose run backend create_scanner --u "scanner-name"
+# Then create an auth token for that scanner
+docker compose run backend create_scanner_token --u "scanner-name"
+```
+  </Tab>
+  <Tab>
+```shell copy
+docker-compose run backend create_scanner --u "scanner-name"
+# Then create an auth token for that scanner
+docker-compose run backend create_scanner_token --u "scanner-name"
+```
+  </Tab>
+  <Tab>
+```shell copy
+docker exec -it webhood-scanner sh -c /pb/backend create_scanner --u "scanner-name"
+# Then create an auth token for that scanner
+docker exec -it webhood-scanner sh -c /pb/backend create_scanner_token -u "scanner-name"
+```
+  </Tab>
+  </Tabs>
