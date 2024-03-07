@@ -1,0 +1,531 @@
+{
+  "schema_version": 18,
+  "standard_lib_version": 45,
+  "action_runtime_version": 6,
+  "name": "Webhood",
+  "description": null,
+  "guid": "5aaee2f891b4147fe4ca2e3d3283b5e3",
+  "slug": "webhood",
+  "agents": [
+    {
+      "type": "Agents::HTTPRequestAgent",
+      "name": "Get screenshot from Webhood console",
+      "disabled": true,
+      "description": null,
+      "guid": "a611a7bb734dbe70fb7ca2ae29b435d8",
+      "origin_story_identifier": "cloud:b8de7ac9d8fc96de1f5ea949eb0185b6:5aaee2f891b4147fe4ca2e3d3283b5e3",
+      "options": {
+        "url": "<<RESOURCE.webhood_url>>/api/beta/scans/<<submit_webhood_url_scan_and_wait_for_results.submit_scan_to_webhood_console.body.id>>/screenshot",
+        "content_type": "application_json",
+        "method": "get",
+        "headers": {
+          "Authorization": "<<CREDENTIAL.webhood_apikey>>"
+        },
+        "disable_ssl_verification": true,
+        "retry_on_status": [
+          "202"
+        ]
+      },
+      "reporting": {
+        "time_saved_value": 0,
+        "time_saved_unit": "minutes"
+      },
+      "monitoring": {
+        "monitor_all_events": false,
+        "monitor_failures": false,
+        "monitor_no_events_emitted": null
+      },
+      "template": {
+        "created_from_template_guid": null,
+        "created_from_template_version": null,
+        "template_tags": []
+      },
+      "width": null,
+      "schedule": null
+    },
+    {
+      "type": "Agents::GroupAgent",
+      "name": "Submit Webhood URL scan and wait for results",
+      "disabled": false,
+      "description": null,
+      "guid": "f2b16604e726a990259792ad4325bd38",
+      "origin_story_identifier": "cloud:b8de7ac9d8fc96de1f5ea949eb0185b6:5aaee2f891b4147fe4ca2e3d3283b5e3",
+      "options": {
+        "url_to_be_scanned": "<<explode_urls.individual_item>>"
+      },
+      "reporting": {
+        "time_saved_value": 0,
+        "time_saved_unit": "minutes"
+      },
+      "monitoring": {
+        "monitor_all_events": false,
+        "monitor_failures": false,
+        "monitor_no_events_emitted": null
+      },
+      "template": {
+        "created_from_template_guid": null,
+        "created_from_template_version": null,
+        "template_tags": []
+      },
+      "width": null,
+      "schedule": null,
+      "group": {
+        "schema_version": 18,
+        "standard_lib_version": 45,
+        "action_runtime_version": 6,
+        "name": "",
+        "description": null,
+        "guid": "eef0bdf73ded4a75bd3fa80d033ac16f",
+        "slug": null,
+        "agents": [
+          {
+            "type": "Agents::HTTPRequestAgent",
+            "name": "Submit scan to Webhood console",
+            "disabled": false,
+            "description": null,
+            "guid": "85c1b8eb016e24174ff2285b1deafbf1",
+            "origin_story_identifier": "cloud:b8de7ac9d8fc96de1f5ea949eb0185b6:5aaee2f891b4147fe4ca2e3d3283b5e3",
+            "options": {
+              "url": "<<RESOURCE.webhood_url>>/api/beta/scans",
+              "content_type": "application_json",
+              "method": "post",
+              "payload": {
+                "url": "<<input.url_to_be_scanned>>"
+              },
+              "headers": {
+                "Authorization": "<<CREDENTIAL.webhood_apikey>>"
+              },
+              "disable_ssl_verification": true
+            },
+            "reporting": {
+              "time_saved_value": 0,
+              "time_saved_unit": "minutes"
+            },
+            "monitoring": {
+              "monitor_all_events": false,
+              "monitor_failures": false,
+              "monitor_no_events_emitted": null
+            },
+            "template": {
+              "created_from_template_guid": null,
+              "created_from_template_version": null,
+              "template_tags": []
+            },
+            "width": null,
+            "schedule": null
+          },
+          {
+            "type": "Agents::HTTPRequestAgent",
+            "name": "Get scan from Webhood console",
+            "disabled": false,
+            "description": null,
+            "guid": "9eeaf8d47043ae29093f7b846117321f",
+            "origin_story_identifier": "cloud:b8de7ac9d8fc96de1f5ea949eb0185b6:5aaee2f891b4147fe4ca2e3d3283b5e3",
+            "options": {
+              "url": "<<RESOURCE.webhood_url>>/api/beta/scans/<<submit_scan_to_webhood_console.body.id>>",
+              "content_type": "application_json",
+              "method": "get",
+              "headers": {
+                "Authorization": "<<CREDENTIAL.webhood_apikey>>"
+              },
+              "disable_ssl_verification": true,
+              "retry_on_status": [
+                "202"
+              ]
+            },
+            "reporting": {
+              "time_saved_value": 0,
+              "time_saved_unit": "minutes"
+            },
+            "monitoring": {
+              "monitor_all_events": false,
+              "monitor_failures": false,
+              "monitor_no_events_emitted": null
+            },
+            "template": {
+              "created_from_template_guid": null,
+              "created_from_template_version": null,
+              "template_tags": []
+            },
+            "width": null,
+            "schedule": null
+          },
+          {
+            "type": "Agents::GroupInputAgent",
+            "name": "Input",
+            "disabled": false,
+            "description": null,
+            "guid": "f6c9072f7e2ba29eef2d494c460cca29",
+            "origin_story_identifier": "cloud:b8de7ac9d8fc96de1f5ea949eb0185b6:5aaee2f891b4147fe4ca2e3d3283b5e3",
+            "options": {
+              "options": [
+                {
+                  "name": "URL to be scanned",
+                  "type": "TEXT",
+                  "description": "URL that you want to submit",
+                  "required": false
+                }
+              ]
+            },
+            "reporting": {
+              "time_saved_value": 0,
+              "time_saved_unit": "minutes"
+            },
+            "monitoring": {
+              "monitor_all_events": false,
+              "monitor_failures": false,
+              "monitor_no_events_emitted": null
+            },
+            "template": {
+              "created_from_template_guid": null,
+              "created_from_template_version": null,
+              "template_tags": []
+            },
+            "width": null
+          },
+          {
+            "type": "Agents::GroupOutputAgent",
+            "name": "Output",
+            "disabled": false,
+            "description": null,
+            "guid": "261890ed418c82ed0e6b0aee387658c8",
+            "origin_story_identifier": "cloud:b8de7ac9d8fc96de1f5ea949eb0185b6:5aaee2f891b4147fe4ca2e3d3283b5e3",
+            "options": {
+              "payload": {
+                "submit_scan_to_webhood_console": "=submit_scan_to_webhood_console",
+                "scan_result": "=get_scan_from_webhood_console"
+              }
+            },
+            "reporting": {
+              "time_saved_value": 0,
+              "time_saved_unit": "minutes"
+            },
+            "monitoring": {
+              "monitor_all_events": false,
+              "monitor_failures": false,
+              "monitor_no_events_emitted": null
+            },
+            "template": {
+              "created_from_template_guid": null,
+              "created_from_template_version": null,
+              "template_tags": []
+            },
+            "width": null
+          }
+        ],
+        "diagram_notes": [],
+        "links": [
+          {
+            "source": 0,
+            "receiver": 1
+          },
+          {
+            "source": 1,
+            "receiver": 3
+          },
+          {
+            "source": 2,
+            "receiver": 0
+          }
+        ],
+        "diagram_layout": "{\"85c1b8eb016e24174ff2285b1deafbf1\":[240,315],\"9eeaf8d47043ae29093f7b846117321f\":[525,435],\"f6c9072f7e2ba29eef2d494c460cca29\":[375,165],\"261890ed418c82ed0e6b0aee387658c8\":[375,585]}",
+        "api_entry_action_guids": [],
+        "api_exit_action_guids": [],
+        "story_library_metadata": {},
+        "monitor_failures": false,
+        "synchronous_webhooks_enabled": false,
+        "exported_at": "2024-03-07T20:24:39Z",
+        "integrations": []
+      }
+    },
+    {
+      "type": "Agents::EmailAgent",
+      "name": "Send Email Action",
+      "disabled": false,
+      "description": null,
+      "guid": "d97b793e17bde4be2f15be31f56aede0",
+      "origin_story_identifier": "cloud:b8de7ac9d8fc96de1f5ea949eb0185b6:5aaee2f891b4147fe4ca2e3d3283b5e3",
+      "options": {
+        "recipients": [
+          "<<receive_email_action.from>>"
+        ],
+        "subject": "URL scan results from Tines",
+        "body": "    <div style=\"text-align: center; border: solid; border-color: lightgray; border-radius: 5px;\">\n      <div style=\"display: inline-block; vertical-align: middle; text-align: center;\">\n    <img src=\"https://www.webhood.io/logo-icon-color-medium.png\" alt=\"Webhood logo\" style=\"width: 50px; height: 50px;\">\n     </div>\n      <div style=\"display: inline-block; vertical-align: middle; text-align: center;\">\n    <h1 >Webhood Scan results</h1>\n    </div>\n     </div>\n    <p>Webhood received your email and has scanned the following URLs</p>\n    <hr>\n  <%for result in implode%>\n    <h3><<REPLACE(REPLACE(result.scanned_url, \".\", \"[.]\"), \":\", \"[:]\")>></h3>\n    <p>\n      Final URL <br><code><<REPLACE(REPLACE(result.final_url, \".\", \"[.]\"), \":\", \"[:]\")>></code>\n    </p>\n    <p>\n      Link to scan results: <a href=\"<<result.link>>\"><<result.link>></a>\n    </p>\n    <hr>\n  <%endfor%>\n    <p style=\"font-size: small;\"><i>\nNote: all scanned URLs have been broken with [.] and [:] to prevent users from accidentally clicking on them. Please remove the brackets to access the original URL.\n    </i></p>\n",
+        "content_type": "text/html",
+        "advanced_html": true
+      },
+      "reporting": {
+        "time_saved_value": 0,
+        "time_saved_unit": "minutes"
+      },
+      "monitoring": {
+        "monitor_all_events": false,
+        "monitor_failures": false,
+        "monitor_no_events_emitted": null
+      },
+      "template": {
+        "created_from_template_guid": null,
+        "created_from_template_version": null,
+        "template_tags": []
+      },
+      "width": null,
+      "schedule": null
+    },
+    {
+      "type": "Agents::IMAPAgent",
+      "name": "Receive Email Action",
+      "disabled": false,
+      "description": null,
+      "guid": "0d1ab78cdcaf900c38b7720f33b449ec",
+      "origin_story_identifier": "cloud:b8de7ac9d8fc96de1f5ea949eb0185b6:5aaee2f891b4147fe4ca2e3d3283b5e3",
+      "options": {
+        "mode": "email"
+      },
+      "reporting": {
+        "time_saved_value": 0,
+        "time_saved_unit": "minutes"
+      },
+      "monitoring": {
+        "monitor_all_events": false,
+        "monitor_failures": false,
+        "monitor_no_events_emitted": null
+      },
+      "template": {
+        "created_from_template_guid": null,
+        "created_from_template_version": null,
+        "template_tags": []
+      },
+      "width": null
+    },
+    {
+      "type": "Agents::EventTransformationAgent",
+      "name": "Parse URLs from email",
+      "disabled": false,
+      "description": null,
+      "guid": "1debaf60c550e691f2e47bff4d74b5eb",
+      "origin_story_identifier": "cloud:b8de7ac9d8fc96de1f5ea949eb0185b6:5aaee2f891b4147fe4ca2e3d3283b5e3",
+      "options": {
+        "mode": "extract",
+        "matchers": [
+          {
+            "path": "=receive_email_action.body",
+            "regexp": "[A-Za-z]+:\\/\\/[A-Za-z0-9\\-_]+\\.[A-Za-z0-9\\-_:%&;\\?\\#\\/.=]+",
+            "to": "urls"
+          }
+        ]
+      },
+      "reporting": {
+        "time_saved_value": 0,
+        "time_saved_unit": "minutes"
+      },
+      "monitoring": {
+        "monitor_all_events": false,
+        "monitor_failures": false,
+        "monitor_no_events_emitted": null
+      },
+      "template": {
+        "created_from_template_guid": null,
+        "created_from_template_version": null,
+        "template_tags": []
+      },
+      "width": null,
+      "schedule": null
+    },
+    {
+      "type": "Agents::EventTransformationAgent",
+      "name": "Explode URLs",
+      "disabled": false,
+      "description": null,
+      "guid": "0ee87e5c3a8bf9994df0ec56b5f4471c",
+      "origin_story_identifier": "cloud:b8de7ac9d8fc96de1f5ea949eb0185b6:5aaee2f891b4147fe4ca2e3d3283b5e3",
+      "options": {
+        "mode": "explode",
+        "path": "=parse_urls_from_email.urls",
+        "to": "individual_item",
+        "limit": "500"
+      },
+      "reporting": {
+        "time_saved_value": 0,
+        "time_saved_unit": "minutes"
+      },
+      "monitoring": {
+        "monitor_all_events": false,
+        "monitor_failures": false,
+        "monitor_no_events_emitted": null
+      },
+      "template": {
+        "created_from_template_guid": null,
+        "created_from_template_version": null,
+        "template_tags": []
+      },
+      "width": null,
+      "schedule": null
+    },
+    {
+      "type": "Agents::EventTransformationAgent",
+      "name": "Implode",
+      "disabled": false,
+      "description": null,
+      "guid": "933eee78a95f82c9bdf748aae634bbae",
+      "origin_story_identifier": "cloud:b8de7ac9d8fc96de1f5ea949eb0185b6:5aaee2f891b4147fe4ca2e3d3283b5e3",
+      "options": {
+        "mode": "implode",
+        "item_path": "=make_output",
+        "guid_path": "=explode_urls.guid",
+        "size_path": "=explode_urls.size"
+      },
+      "reporting": {
+        "time_saved_value": 0,
+        "time_saved_unit": "minutes"
+      },
+      "monitoring": {
+        "monitor_all_events": false,
+        "monitor_failures": false,
+        "monitor_no_events_emitted": null
+      },
+      "template": {
+        "created_from_template_guid": null,
+        "created_from_template_version": null,
+        "template_tags": []
+      },
+      "width": null,
+      "schedule": null
+    },
+    {
+      "type": "Agents::EventTransformationAgent",
+      "name": "Make output",
+      "disabled": false,
+      "description": null,
+      "guid": "67c528e72b6aefeccf648b15c1a0990f",
+      "origin_story_identifier": "cloud:b8de7ac9d8fc96de1f5ea949eb0185b6:5aaee2f891b4147fe4ca2e3d3283b5e3",
+      "options": {
+        "mode": "message_only",
+        "loop": false,
+        "payload": {
+          "final_url": "<<submit_webhood_url_scan_and_wait_for_results.scan_result.body.final_url>>",
+          "link": "<<JOIN([RESOURCE.webhood_url, \"scan\",submit_webhood_url_scan_and_wait_for_results.scan_result.body.slug], \"/\")>>",
+          "scanned_url": "<<submit_webhood_url_scan_and_wait_for_results.scan_result.body.url>>"
+        }
+      },
+      "reporting": {
+        "time_saved_value": 0,
+        "time_saved_unit": "minutes"
+      },
+      "monitoring": {
+        "monitor_all_events": false,
+        "monitor_failures": false,
+        "monitor_no_events_emitted": null
+      },
+      "template": {
+        "created_from_template_guid": null,
+        "created_from_template_version": null,
+        "template_tags": []
+      },
+      "width": null,
+      "schedule": null
+    }
+  ],
+  "diagram_notes": [
+    {
+      "content": "![link](https://www.webhood.io/large-wsubtitle.png)\n\nThis story enables you to scan messages received by the story email address.\n\nThe scan results are then returned to the original sender.\n\nWebhood is built with third-party integrations in mind. You can find the full REST API documentation at: https://www.webhood.io/docs/reference/api",
+      "position": [
+        360,
+        30
+      ],
+      "guid": "9d36e785a1b0b3988f77e995df436220",
+      "width": 270
+    },
+    {
+      "content": "# Requirements:\n\n**Credentials**\n`webhood_apikey`: API key of your Webhood instance\n\n**Resources**\n`webhood_url`: URL of your webhood instance, for example: https://webhood.example.com",
+      "position": [
+        915,
+        75
+      ],
+      "guid": "c6ff9e2f2812df1365f656be77ae7d08",
+      "width": 270
+    },
+    {
+      "content": "**Screenshot** action will allow you to fetch the screenshot of the finished scan if needed. \n\nYou could connect this action to another story, for example: \n- Attach the screenshot to a Jira ticket of the scan\n- Post the screenshot to a third party tool for further analysis",
+      "position": [
+        1065,
+        405
+      ],
+      "guid": "a6fbd3ef40be8626e97a6ce8003aeb5f",
+      "width": 270
+    },
+    {
+      "content": "*Implode* will wait for all URLs to be scanned before sending the results via email.",
+      "position": [
+        375,
+        570
+      ],
+      "guid": "bef8ae42a13b576b2374cdec3336ba6c",
+      "width": 270
+    },
+    {
+      "content": "# Example flow (scroll down ⬇️)\n\n## 1. User receives a suspicious email\n![Example of received email](https://www.webhood.io/tines/story/1-received.png)\n\n## 2. User forwards the email to email address in the story\n\n![Example of user forwarding email](https://www.webhood.io/tines/story/2-sent.png)\n\n## 3. User receives the scan results along with a link to see the results\n\n![Example of results email](https://www.webhood.io/tines/story/3-results-mail.png)\n\n## 4. Results are fully visible in the Webhood console\n\n![Example of results in Webhood console](https://www.webhood.io/tines/story/4-results-webhood.png)\n",
+      "position": [
+        -255,
+        45
+      ],
+      "guid": "1d19624a169a9b8f3d32697f88a4bd62",
+      "width": 570
+    }
+  ],
+  "links": [
+    {
+      "source": 1,
+      "receiver": 7
+    },
+    {
+      "source": 1,
+      "receiver": 0
+    },
+    {
+      "source": 3,
+      "receiver": 4
+    },
+    {
+      "source": 4,
+      "receiver": 5
+    },
+    {
+      "source": 5,
+      "receiver": 1
+    },
+    {
+      "source": 6,
+      "receiver": 2
+    },
+    {
+      "source": 7,
+      "receiver": 6
+    }
+  ],
+  "diagram_layout": "{\"a611a7bb734dbe70fb7ca2ae29b435d8\":[810,405],\"f2b16604e726a990259792ad4325bd38\":[660,300],\"d97b793e17bde4be2f15be31f56aede0\":[660,675],\"0d1ab78cdcaf900c38b7720f33b449ec\":[660,30],\"1debaf60c550e691f2e47bff4d74b5eb\":[660,120],\"0ee87e5c3a8bf9994df0ec56b5f4471c\":[660,210],\"933eee78a95f82c9bdf748aae634bbae\":[660,585],\"67c528e72b6aefeccf648b15c1a0990f\":[660,510]}",
+  "send_to_story_enabled": false,
+  "entry_agent_guid": null,
+  "exit_agent_guids": [],
+  "exit_agent_guid": null,
+  "api_entry_action_guids": [],
+  "api_exit_action_guids": [],
+  "keep_events_for": 86400,
+  "reporting_status": true,
+  "send_to_story_access": null,
+  "story_library_metadata": {},
+  "monitor_failures": false,
+  "send_to_stories": [],
+  "form": null,
+  "synchronous_webhooks_enabled": false,
+  "forms": [],
+  "pages": [],
+  "tags": [],
+  "time_saved_unit": "minutes",
+  "time_saved_value": 0,
+  "origin_story_identifier": "cloud:b8de7ac9d8fc96de1f5ea949eb0185b6:5aaee2f891b4147fe4ca2e3d3283b5e3",
+  "integration_product": null,
+  "integration_vendor": null,
+  "exported_at": "2024-03-07T20:24:39Z",
+  "icon": ":magic_wand:",
+  "integrations": []
+}
