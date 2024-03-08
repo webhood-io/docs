@@ -16,6 +16,10 @@
     "href": "/docs/deployment",
     "type": "page"
   },
+  "cloud": {
+    "title": "Cloud",
+    "display": "hidden"
+  },
   "contact": {
     "title": "Contact ↗",
     "type": "page",
