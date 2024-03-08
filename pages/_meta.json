@@ -18,7 +18,8 @@
   },
   "cloud": {
     "title": "Cloud",
-    "display": "hidden"
+    "display": "hidden",
+    "type": "page"
   },
   "contact": {
     "title": "Contact ↗",
