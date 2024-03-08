@@ -1,5 +1,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "../../../components/ui/carousel"
 
 
 # Tines and Webhood integration
@@ -11,9 +18,30 @@ Tines is a no-code automation platform that allows you to automate repetitive ta
 
 To get started with Tines and Webhood integration, we've created a simple story that demonstrates how to use the email trigger and Webhood actions in Tines.
 
-<Link href="/tines/story/storyboard.png">
-<Image src="/tines/story/storyboard.png" width={2925/4} height={2177/4}/>
-</Link>
+<Carousel 
+  opts={{
+    align: "center",
+  }}>
+  <CarouselContent>
+    <CarouselItem>
+        <Image priority src="/tines/story/storyboard.png" width={2925/4} height={2177/4}/>
+    </CarouselItem>
+    <CarouselItem>
+        <Image src="/tines/story/1-received.png" width={1204} height={612}/>
+    </CarouselItem>
+    <CarouselItem>
+        <Image src="/tines/story/2-sent.png" width={1726} height={920} />
+    </CarouselItem>
+    <CarouselItem>
+        <Image src="/tines/story/3-results-mail.png" width={1356} height={992} />
+    </CarouselItem>
+    <CarouselItem>
+        <Image src="/tines/story/4-results-webhood.png" width={1984} height={1384} />
+    </CarouselItem>
+  </CarouselContent>
+  <CarouselPrevious />
+  <CarouselNext />
+</Carousel>
 
 You can download the story from the Tines below and import it into your Tines account.
 
