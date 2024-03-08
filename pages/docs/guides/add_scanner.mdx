@@ -1,5 +1,5 @@
 import { Tab, Tabs } from "nextra-theme-docs"
-import { Callout } from 'nextra/components'
+import { Callout, Steps } from 'nextra/components'
 
 # Add a scanner
 
@@ -17,11 +17,12 @@ This guide will show you how to add a scanner to connect to your console. Scanne
   - docker-compose
 - Connectivity from the scanner to the console. If you are running the scanner on a different network, you will need to open the console port to the scanner network. Default port for the console is `8000` if using the deployment guide.
 
-## Steps
+# Steps
 
-### In the console
+## In the console
 
-1. Run command to create the scanner
+<Steps>
+### Run command to create the scanner
 
 These commands assume you have deployed the console using the [docker-compose.yml](https://github.com/webhood-io/webhood/blob/main/docker-compose.yml).
 
@@ -47,10 +48,12 @@ This returns
       ```shell
          SCANNER_TOKEN=ey....
       ```
+</Steps>
 
-### In the scanner host
+## In the scanner host
 
-1. Create a `.env` file with the scanner token
+<Steps>
+### Create a `.env` file with the scanner token
 
 ```shell copy
 SCANNER_TOKEN=ey....
@@ -59,7 +62,7 @@ ENDPOINT=http://console-address:8000
 
 Where `http://console-address:8000` is the address of the console. If you are running the console on a different port or network, you will need to change the `ENDPOINT` variable.
 
-2. Download the [seccomp](https://en.wikipedia.org/wiki/Seccomp) profile for the scanner
+### Download the [seccomp](https://en.wikipedia.org/wiki/Seccomp) profile for the scanner
 
 ```shell copy
 curl -o chrome.json https://raw.githubusercontent.com/webhood-io/webhood/main/files/chrome.json
@@ -67,7 +70,7 @@ curl -o chrome.json https://raw.githubusercontent.com/webhood-io/webhood/main/fi
 
 <Tabs items={["docker compose", "docker-compose", "docker"]}>
   <Tab>
-3. Create a `docker-compose.yml` file with the scanner configuration
+### Create a `docker-compose.yml` file with the scanner configuration
 
 ```yaml copy
 services:
@@ -83,7 +86,7 @@ services:
       # This allows us to run chrome with sandboxing enabled without having to run the whole container as root
       - seccomp=./chrome.json
       ```
-4. Run the scanner and check for any errors
+### Run the scanner and check for any errors
 
       ```shell copy
          docker compose up
@@ -91,14 +94,14 @@ services:
 
 It is a good idea to now initiate some scans in the console to see if the scanner is working correctly.
 
-5. If no errors, you can start the scanner as a daemon
+### If no errors, you can start the scanner as a daemon
 
       ```shell copy
          docker compose up -d
       ```
   </Tab>
   <Tab>
-3. Create a `docker-compose.yml` file with the scanner configuration
+### Create a `docker-compose.yml` file with the scanner configuration
 
 ```yaml copy
 services:
@@ -114,7 +117,7 @@ services:
       # This allows us to run chrome with sandboxing enabled without having to run the whole container as root
       - seccomp=./chrome.json
       ```
-4. Run the scanner and check for any errors
+### Run the scanner and check for any errors
 
       ```shell copy
          docker-compose up
@@ -122,14 +125,14 @@ services:
 
 It is a good idea to now initiate some scans in the console to see if the scanner is working correctly.
 
-5. If no errors, you can start the scanner as a daemon
+### If no errors, you can start the scanner as a daemon
 
       ```shell copy
          docker-compose up -d
       ```
   </Tab>
   <Tab>
-  3. Start the scanner
+### Start the scanner
 
     ```shell copy
     # docker run equivalent of the docker-compose.yml
@@ -142,6 +145,8 @@ It is a good idea to now initiate some scans in the console to see if the scanne
 
   </Tab>
 </Tabs>
+
+</Steps>
 
 ## Additional configuration
 

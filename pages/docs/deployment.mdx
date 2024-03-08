@@ -1,5 +1,5 @@
 import { Tab, Tabs } from "nextra-theme-docs"
-import { Card, Cards, FileTree } from 'nextra/components'
+import { Card, Cards, FileTree, Steps } from 'nextra/components'
 import {Cog, Lock, RefreshCcw} from 'lucide-react'
 import { Callout } from 'nextra/components'
 
@@ -18,7 +18,9 @@ import { Callout } from 'nextra/components'
 
 ## Deployment
 
-1. Clone the deployment repo
+<Steps>
+
+### Clone the deployment repo
    This git repo contains the `docker-compose.yml` file as well as other deployment-only related files.
 
 ```shell copy
@@ -26,7 +28,7 @@ git clone https://github.com/webhood-io/webhood.git --depth=1 --branch=main
 cd webhood
 ```
 
-2. Copy the example `.env` file in the root directory of the project:
+### Copy the example `.env` file in the root directory of the project:
 
 ```shell copy
 cp .env.example .env
@@ -34,7 +36,7 @@ cp .env.example .env
 
 Next, we configure the only required variable `SCANNER_TOKEN`. Other variables are optional and can be set later as documented [here](reference/configuration).
 
-3. Create a service token for the scanner
+### Create a authentication token for the scanner
 
 <Tabs items={["docker", "docker-compose"]}>
   <Tab>
@@ -57,7 +59,7 @@ Next, we configure the only required variable `SCANNER_TOKEN`. Other variables a
 
 Save this into your `.env` as `SCANNER_TOKEN`
 
-4. Run `docker compose up -d` to start the application
+### Run `docker compose up -d` to start the application
 
 <Tabs items={["docker", "docker-compose"]}>
   <Tab>
@@ -72,7 +74,7 @@ Save this into your `.env` as `SCANNER_TOKEN`
   </Tab>
 </Tabs>
 
-5. Create a user
+### Create a user
 
 <Tabs items={["docker", "docker-compose"]}>
   <Tab>
@@ -89,9 +91,11 @@ Save this into your `.env` as `SCANNER_TOKEN`
   </Tab>
 </Tabs>
 
-7. Start using it
+### Start using it
 
 Navigate to [`https://localhost:8443`](https://localhost:8443) and login with the account you created in step `6`
+
+</Steps>
 
 ## Known issues
 
