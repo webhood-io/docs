@@ -81,6 +81,10 @@ services:
     environment:
       ENDPOINT: ${ENDPOINT}
       SCANNER_TOKEN: ${SCANNER_TOKEN}
+      #  Scanner is not able to receive realtime updates from the console if it is using a self-signed certificate. 
+      #  We therefore recommend using valid certificate or plain HTTP for the scanner.
+      #  But, comment out next line if you are using a self-signed certificate and HTTPS anyway. 
+      # NODE_TLS_REJECT_UNAUTHORIZED: 0
     security_opt:
       # Use seccomp to restrict the syscalls that the container can make for Chrome
       # This allows us to run chrome with sandboxing enabled without having to run the whole container as root
