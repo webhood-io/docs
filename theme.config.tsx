@@ -45,7 +45,7 @@ const config: DocsThemeConfig = {
         <a href="https://webhood.io" target="_blank">
           Webhood.io
         </a>
-        .
+        . Webhood is product of ST4 Cyber Oy, an incorporated business based in Finland 🇫🇮🇪🇺
       </span>
     ),
   },
