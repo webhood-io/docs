@@ -1,6 +1,6 @@
 import React from "react"
-import { DocsThemeConfig, useConfig } from "nextra-theme-docs"
 import { useRouter } from "next/router"
+import { DocsThemeConfig, useConfig } from "nextra-theme-docs"
 
 const logo = (
   <span>
@@ -78,19 +78,30 @@ const config: DocsThemeConfig = {
       <meta name="msapplication-TileColor" content="#da532c" />
       <meta name="theme-color" content="#ffffff"></meta>
       <meta property="og:image" content="https://www.webhood.io/api/og" />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "Webhood URL Scanner",
+            url: "https://www.webhood.io/",
+          }),
+        }}
+      />
     </>
   ),
   useNextSeoProps() {
     const { frontMatter } = useConfig()
     const { asPath } = useRouter()
-    const url =
-      'https://www.webhood.io' + `${asPath}`
+    const url = "https://www.webhood.io" + `${asPath}`
 
     return {
-      titleTemplate: "%s - Webhood",
+      titleTemplate: "%s | Webhood",
+      site_name: "Webhood URL Scanner",
       url: url,
       openGraph: {
-        url
+        url,
       },
       description:
         frontMatter.description || "Webhood - Self-hosted URL Scanner",
