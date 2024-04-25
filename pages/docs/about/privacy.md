@@ -1,9 +1,10 @@
 # PRIVACY POLICY
-Last updated December 31, 2023
+Last updated April 17, 2024
 
 This privacy notice for Webhood ('we', 'us', or 'our'), describes how and why we might collect, store, use, and/or share ('process') your information when you use our services ('Services'), such as when you:
 
 - Visit our website at webhood.io, or any website of ours that links to this privacy notice
+- Use our Services, including any software, applications, features, technologies, or functionalities we offer
 - Engage with us in other related ways, including any sales, marketing, or events
 
 Questions or concerns? Reading this privacy notice will help you understand your privacy rights and choices. If you do not agree with our policies and practices, please do not use our Services. If you still have any questions or concerns, please contact us at contact@webhood.io.
@@ -12,23 +13,29 @@ Questions or concerns? Reading this privacy notice will help you understand your
 
 This summary provides key points from our privacy notice, but you can find out more details about any of these topics by clicking the link following each key point or by using our table of contents below to find the section you are looking for.
 
-What personal information do we process? When you visit, use, or navigate our Services, we may process personal information depending on how you interact with us and the Services, the choices you make, and the products and features you use. 
+**What personal information do we process?** When you visit, use, or navigate our Services, we may process personal information depending on how you interact with us and the Services, the choices you make, and the products and features you use. 
 
 
-Do we process any sensitive personal information? We do not process sensitive personal information.
+**Do we process any sensitive personal information?** 
+We do not process sensitive personal information.
 
-Do we receive any information from third parties? We do not receive any information from third parties.
+**Do we receive any information from third parties?** 
+We do not receive any information from third parties.
 
-How do we process your information? We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law. We may also process your information for other purposes with your consent. We process your information only when we have a valid legal reason to do so. Learn more about [how we process your information](#).
+**How do we process your information?**
+We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law. We may also process your information for other purposes with your consent. We process your information only when we have a valid legal reason to do so. Learn more about [how we process your information](#).
 
-In what situations and with which parties do we share personal information?
+**In what situations and with which parties do we share personal information?**
 We may share information in specific situations and with specific third parties. Learn more about when and with whom we share your personal information.
 
-How do we keep your information safe? We have organisational and technical processes and procedures in place to protect your personal information. However, no electronic transmission over the internet or information storage technology can be guaranteed to be 100% secure, so we cannot promise or guarantee that hackers, cybercriminals, or other unauthorised third parties will not be able to defeat our security and improperly collect, access, steal, or modify your information. Learn more about how we keep your information safe.
+**How do we keep your information safe?**
+ We have organisational and technical processes and procedures in place to protect your personal information. However, no electronic transmission over the internet or information storage technology can be guaranteed to be 100% secure, so we cannot promise or guarantee that hackers, cybercriminals, or other unauthorised third parties will not be able to defeat our security and improperly collect, access, steal, or modify your information. 
 
-What are your rights? Depending on where you are located geographically, the applicable privacy law may mean you have certain rights regarding your personal information. Learn more about your privacy rights.
+**What are your rights?**
+ Depending on where you are located geographically, the applicable privacy law may mean you have certain rights regarding your personal information. Learn more about your privacy rights.
 
-How do you exercise your rights? The easiest way to exercise your rights is by contacting us at contact@webhood.io. We will consider and act upon any request in accordance with applicable data protection laws.
+**How do you exercise your rights?**
+ The easiest way to exercise your rights is by contacting us at contact@webhood.io. We will consider and act upon any request in accordance with applicable data protection laws.
 
 Want to learn more about what we do with any information we collect? Review the privacy notice in full.
 
@@ -39,7 +46,8 @@ In Short: We collect personal information that you provide to us.
 
 We collect personal information that you voluntarily provide to us when you express an interest in obtaining information about us or our products and Services, when you participate in activities on the Services, or otherwise when you contact us.
 
-Sensitive Information. We do not process sensitive information.
+### Sensitive Information. 
+We do not process sensitive information.
 
 All personal information that you provide to us must be true, complete, and accurate,
 and you must notify us of any changes to such personal information.
@@ -78,7 +86,7 @@ In Short: We only process your personal information when we believe it is necess
 #### If you are located in the EU or UK, this section applies to you.
 
 The General Data Protection Regulation (GDPR) and UK GDPR require us to explain the valid legal bases we rely on in order to process your personal information. As such, we may rely on the following legal bases to process your personal information:
-- Consent. We may process your information if you have given us permission (i.e. consent) to use your personal information for a specific purpose. You can withdraw your consent at any time. Learn more about withdrawing your consent.
+- Consent. We may process your information if you have given us permission (i.e. consent) to use your personal information for a specific purpose. You can withdraw your consent at any time. 
 
 - Legitimate Interests. We may process your information when we believe it is reasonably necessary to achieve our legitimate business interests and those interests do not outweigh your interests and fundamental rights and freedoms. For example, we may process your personal information for some of the purposes described in order to:
 
@@ -124,13 +132,14 @@ In some exceptional cases, we may be legally permitted under applicable law to p
 
 In Short: We may share information in specific situations and with specific third parties.
 
-Vendors, Consultants, and Other Third-Party Service Providers. We may share your data with third-party vendors, service providers, contractors, or agents ('third parties') who perform services for us or on our behalf and require access to such information to do that work. We have contracts in place with our third parties, which are designed to help safeguard your personal information. This means that they cannot do anything with your personal information unless we have instructed them to do it. They will also not share your personal information with any organisation apart from us. They also commit to protect the data they hold on our behalf and to retain it for the period we instruct. The third parties we may share personal information with are as follows:
+Vendors, Consultants, and Other Third-Party Service Providers. We may share your data with third-party vendors, service providers, contractors, or agents ('third parties') who perform services for us or on our behalf and require access to such information to do that work. We have contracts in place with our third parties, which are designed to help safeguard your personal information. They also commit to protect the data they hold on our behalf and to retain it for the period we instruct. The third parties we may share personal information with are as follows:
 
 - Cloud Computing Services. We use cloud computing services to store and process personal information we collect, which may include the storage of your personal information on servers in the United States and in the European Union. We use the following cloud computing service providers:
 
   - Amazon Web Services (AWS) - [Privacy Policy](https://aws.amazon.com/privacy/)
+  - Hertzner Online GmbH - [Privacy Policy](https://www.hetzner.com/rechtliches/datenschutz)
 
-- Functionality, Infrastructure Optimisation, Web and Mobile Analtics and Performance Monitoring
+- Functionality, Infrastructure Optimisation, Web and Mobile Analytics and Performance Monitoring
   
     - Vercel Inc. [Privacy Policy](https://vercel.com/legal/privacy-policy)
 
@@ -193,7 +202,7 @@ We have collected the following categories of personal information in the past t
 
 | Category | Examples | Collected |
 | --- | --- | --- |
-| Identifiers | A real name, alias, postal address, unique personal identifier, online identifier, Internet Protocol address, email address, account name, Social Security number, driver's license number, passport number, or other similar identifiers. | NO |
+| Identifiers | A real name, alias, postal address, unique personal identifier, online identifier, Internet Protocol address, email address, account name, Social Security number, driver's license number, passport number, or other similar identifiers. | YES |
 | Protected classification characteristics under state or federal law | Gender and date of birth | NO |
 | Commercial information | Records of personal property, products or services purchased, obtained, or considered, or other purchasing or consuming histories or tendencies. | NO |
 | Biomatric information | Fingerprints and voiceprints | NO |
@@ -234,7 +243,7 @@ We may update this privacy notice from time to time. The updated version will be
 
 If you have questions or comments about this notice, you may email us at contact@webhood.io.
 
-If you are a resident in the European Economic Area or Switzerland, we are the 'data controller' of your personal information. You can contact us directly regarding our processing of your information, by email at contact@webhood.io.s
+If you are a resident in the European Economic Area or Switzerland, we are the 'data controller' of your personal information. You can contact us directly regarding our processing of your information, by email at contact@webhood.io
 
 ### 14. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?
 Based on the applicable laws of your country, you may have the right to request access to the personal information we collect from you, change that information, or delete it. To request to review, update, or delete your personal information, please visit: contact@webhood.io.

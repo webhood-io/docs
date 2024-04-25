@@ -1,0 +1,10 @@
+{
+  "introduction": "Introduction",
+  "features": "Features",
+  "pricing": {
+    "title": "Pricing",
+    "theme": {
+      "layout": "full"
+    }
+  }
+}

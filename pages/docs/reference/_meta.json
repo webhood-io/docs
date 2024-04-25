@@ -1,9 +1,0 @@
-{
-  "configuration": "Configuration variables",
-  "api": {
-    "title": "API reference",
-    "theme": {
-      "layout": "full"
-    }
-  }
-}

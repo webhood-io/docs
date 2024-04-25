@@ -17,8 +17,8 @@
     "type": "page"
   },
   "cloud": {
-    "title": "Cloud",
-    "display": "hidden",
+    "title": "Cloud Login ☁️",
+    "href": "https://cloud.webhood.io",
     "type": "page"
   },
   "contact": {

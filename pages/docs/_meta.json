@@ -1,9 +1,33 @@
 {
   "index": "Introduction",
+  "-- Manage": {
+    "type": "separator",
+    "title": "Manage"
+  },
   "deployment": "Deploy",
-  "guides": "Guides",
+  "add_scanner": "Add scanners",
+  "integrate": "Integrate",
   "updates": "Update",
+  "configuration": "Configure",
+  "-- Cloud": {
+    "type": "separator",
+    "title": "Cloud"
+  },
+  "cloud": "Cloud",
+  "-- About": {
+    "type": "separator",
+    "title": "About"
+  },
   "security": "Security",
-  "reference": "Reference",
-  "about": "About"
+  "about": "About",
+  "-- Reference": {
+    "type": "separator",
+    "title": "Reference"
+  },
+  "api-reference": {
+    "title": "API reference",
+    "theme": {
+      "layout": "full"
+    }
+  }
 }

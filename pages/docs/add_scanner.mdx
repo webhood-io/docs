@@ -1,3 +1,8 @@
+---
+title: Add a scanner
+description: This guide will show you how to add a scanner to connect to your console. Scanner is the component that runs the scans and reports the results back to the console.
+---
+
 import { Tab, Tabs } from "nextra-theme-docs"
 import { Callout, Steps } from 'nextra/components'
 
@@ -55,7 +60,7 @@ This returns
 <Steps>
 ### Create a `.env` file with the scanner token
 
-```shell copy
+```shell copy filename=".env"
 SCANNER_TOKEN=ey....
 ENDPOINT=http://console-address:8000
 ``` 
@@ -72,7 +77,7 @@ curl -o chrome.json https://raw.githubusercontent.com/webhood-io/webhood/main/fi
   <Tab>
 ### Create a `docker-compose.yml` file with the scanner configuration
 
-```yaml copy
+```yaml copy filename="docker-compose.yml"
 services:
   scanner:
     container_name: webhood-scanner

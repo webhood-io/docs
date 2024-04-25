@@ -1,6 +1,21 @@
+---
+title: Configuration
+description: Configuration reference for Webhood deployment.
+---
+
 # Configuration reference
 
 ## Environment variables
+
+These environment variables can be set in the [`.env`](https://github.com/webhood-io/webhood/blob/main/.env.example) file or in the environment where the docker-compose is run. Note that these environment variables may not be the same as the ones used by individual containers. Refer to the [docker-compose.yml](https://github.com/webhood-io/webhood/blob/main/docker-compose.yml) file for the environment variables used by each container.
+
+For example, to set the log level of the scanner container, use the `LOG_LEVEL` environment variable:
+
+```yaml filename="docker-compose.yml"
+  scanner:
+    environment:
+      LOG_LEVEL: ${SCANNER_LOG_LEVEL:-info}
+```
 
 ### Required
 
