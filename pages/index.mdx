@@ -5,18 +5,15 @@ description: Simple, private URL scanner keeping your sensitive data on your own
 
 import Image from "next/image"
 import Link from "next/link"
-import {Cloud, Building, CloudUpload} from "lucide-react"
+import { Building, Cloud, CloudUpload } from "lucide-react"
 
 import { Feature, Features } from "../components/features"
-import {FeatureItem} from "../components/ui/featureitem"
+import { FeatureItem } from "../components/ui/featureitem"
 import testImage from "../public/example-ms-dark.png"
 import testImageWhite from "../public/example-ms-light.png"
-
+import phishStory from "../public/phishstory.png"
 import featureImage from "../public/ui-features-ms-dark.png"
 import featureImageLight from "../public/ui-features-ms-light.png"
-
-
-import phishStory from "../public/phishstory.png"
 import styles from "./index.module.css"
 
 <div className="container">
@@ -269,14 +266,14 @@ import styles from "./index.module.css"
                         <FeatureItem Logo={Building} title="On-premise">
                         <>
                         <p>Run your own management console and scanners on your own premise. Even go full air-gapped and it simply works.</p>
-                            <p>You can be run everything as a simple standalone Docker container or as a full Kubernetes deployment. 
-                           <Link className="text-purple-500" href="/docs/deployment">Learn more about self-hosted</Link></p> 
+                            <p>You can be run everything as a simple standalone Docker container or as a full Kubernetes deployment.
+                           <Link className="text-purple-500" href="/docs/deployment">Learn more about self-hosted</Link></p>
 
                             </>
                         </FeatureItem>
                         <FeatureItem Logo={CloudUpload} title="Hybrid">
                         <p>Run the management console in the cloud and scanners on-premise. Or, run everything yourself, but take advantage of the Scanner API to get ahead of the hackers.
-                           <Link className="text-purple-500" href="/docs/cloud/scanner-cloud">Learn more about Scanner API</Link></p> 
+                           <Link className="text-purple-500" href="/docs/cloud/scanner-cloud">Learn more about Scanner API</Link></p>
 
                         </FeatureItem>
                         </div>
@@ -285,5 +282,4 @@ import styles from "./index.module.css"
             </Features>
         </div>
     </div>
-
 </div>
