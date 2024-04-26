@@ -30,8 +30,8 @@ import styles from "./index.module.css"
         </p>
     </div>
     <div className="w-1/2 lg:block hidden overflow-hidden rounded-3xl mt-2 shadow">
-                    <Image className="dark:hidden block" src={testImageWhite} priority={true}/>
-                    <Image className="dark:block hidden" src={testImage} priority={true}/>
+                    <Image className="dark:hidden block" src={testImageWhite} alt="Example scan result from Webhood URL Scanner" priority={true}/>
+                    <Image className="dark:block hidden" src={testImage} alt="Example scan result from Webhood URL scanner in darkmode" priority={true}/>
                     </div>
     </div>
 
@@ -228,8 +228,8 @@ import styles from "./index.module.css"
         <div className="-mt-32">
             <Features>
                 <Feature index={0} large id="docs-card" href="/docs/">
-                    <Image src={featureImageLight} priority={true}/>
-                    <Image src={featureImage} priority={true}/>
+                    <Image src={featureImageLight} alt="Showcase of features of the Webhood URL scanner UI"/>
+                    <Image src={featureImage} alt="Showcase of features of the Webhood URL scanner UI in darkmode"/>
                     <h3>View scan results <br className="show-on-mobile"/>in seconds.</h3>
                 </Feature>
                 <Feature index={1} centered className="card-with-border" href="/docs">
@@ -237,7 +237,7 @@ import styles from "./index.module.css"
                         <h3>Data is <br className="show-on-mobile"/>always <span style={{ fontWeight: 300 }}>where you decide it to be</span>.</h3>
                         <p className='text-left mb-8'>Suspicious URLs may be phishing - they also may be confidential documents from your partner. </p>
                         <div className={"items-center flex flex-col"}>
-                            <Image className={"dark:block"} src={phishStory} height={309}/>
+                            <Image className={"dark:block"} alt="Flowchart showing a story from phishing link to being scanned by Webhood URL scanner" src={phishStory} height={309}/>
                         </div>
                         Webhood enables you to safely check URLs and files without sharing the links on the internet.
                     </div>
@@ -260,13 +260,13 @@ import styles from "./index.module.css"
                         <div className="flex flex-col gap-2 pt-2">
                         <FeatureItem Logo={Cloud} title="Cloud hosted">
                             <p>Deploy Webhood in completely managed environment. You remain in control of all your data.
-                            <Link className="text-purple-500" href="/docs/cloud/introduction">Learn more</Link></p>
+                            <Link className="text-purple-500" href="/docs/cloud/introduction">Learn more about Webhood Cloud</Link></p>
                         </FeatureItem>
                         <FeatureItem Logo={Building} title="On-premise">
                         <>
                         <p>Run your own management console and scanners on your own premise. Even go full air-gapped and it simply works.</p>
                             <p>You can be run everything as a simple standalone Docker container or as a full Kubernetes deployment. 
-                           <Link className="text-purple-500" href="/docs/deployment">Learn more</Link></p> 
+                           <Link className="text-purple-500" href="/docs/deployment">Learn more about self-hosted</Link></p> 
 
                             </>
                         </FeatureItem>
