@@ -29,9 +29,13 @@ import styles from "./index.module.css"
             <Link className="px-5 py-3 text-base md:text-xl border-0 rounded-full" href="https://cloud.webhood.io/login"> Try hosted<span>→</span></Link>
         </p>
     </div>
-    <div className="w-1/2 lg:block hidden overflow-hidden rounded-3xl mt-2 shadow">
-                    <Image className="dark:hidden block" src={testImageWhite} alt="Example scan result from Webhood URL Scanner" priority={true}/>
-                    <Image className="dark:block hidden" src={testImage} alt="Example scan result from Webhood URL scanner in darkmode" priority={true}/>
+    <div className="w-1/2 lg:block hidden overflow-hidden rounded-3xl mt-2 shadow max-w-[900px] h-full relative">
+                    <Image className="dark:hidden block" 
+                            sizes="50vw"
+                    src={testImageWhite} alt="Example scan result from Webhood URL Scanner" priority={true}/>
+                    <Image 
+                            sizes="50vw"
+                    className="dark:block hidden" width={900} src={testImage} alt="Example scan result from Webhood URL scanner in darkmode" priority={true}/>
                     </div>
     </div>
 
@@ -228,8 +232,8 @@ import styles from "./index.module.css"
         <div className="-mt-32">
             <Features>
                 <Feature index={0} large id="docs-card" href="/docs/">
-                    <Image src={featureImageLight} alt="Showcase of features of the Webhood URL scanner UI"/>
-                    <Image src={featureImage} alt="Showcase of features of the Webhood URL scanner UI in darkmode"/>
+                    <Image src={featureImageLight} placeholder="blur" alt="Showcase of features of the Webhood URL scanner UI"/>
+                    <Image src={featureImage} placeholder="blur" alt="Showcase of features of the Webhood URL scanner UI in darkmode"/>
                     <h3>View scan results <br className="show-on-mobile"/>in seconds.</h3>
                 </Feature>
                 <Feature index={1} centered className="card-with-border" href="/docs">
