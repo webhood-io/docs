@@ -11,11 +11,6 @@
     "type": "page",
     "title": "Documentation"
   },
-  "getstarted": {
-    "title": "Get Started",
-    "href": "/docs/deployment",
-    "type": "page"
-  },
   "cloud": {
     "title": "Cloud Login ☁️",
     "href": "https://cloud.webhood.io",

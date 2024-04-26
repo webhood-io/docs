@@ -3449,15 +3449,15 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
-lucide-react@^0.350.0:
-  version "0.350.0"
-  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.350.0.tgz#78b45342f4daff4535290e37b1ea7eb0961a3dab"
-  integrity sha512-5IZVKsxxG8Nn81gpsz4XLNgCAXkppCh0Y0P0GLO39h5iVD2WEaB9of6cPkLtzys1GuSfxJxmwsDh487y7LAf/g==
+lucide-react@latest:
+  version "0.373.0"
+  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.373.0.tgz#88bb70d645086bff2a8cf426ccd04522d4a0b043"
+  integrity sha512-0kygFhk/DmK4mi+zf1t5mNStJQGaElACZdDdLiHOHFJzi7g3maC3SR86AcaUsxvDkZPId3XCd4vRngnjkPHu3Q==
 
-lucide@^0.290.0:
-  version "0.290.0"
-  resolved "https://registry.yarnpkg.com/lucide/-/lucide-0.290.0.tgz#f601b5d903bb1647352a5dbcf8d2b11b21bc5ae7"
-  integrity sha512-EuNcjoKnYyntMESVcyB5+Ukeziclga0NHESrP9jZWMdm1pHwGpseVrc69Tbn7eZ/Etyjnnq55OR/phxPrISWlg==
+lucide@latest:
+  version "0.373.0"
+  resolved "https://registry.yarnpkg.com/lucide/-/lucide-0.373.0.tgz#32d40c0476b0f6a6712b501d37d63d8dc902c56e"
+  integrity sha512-YNQT6f+Pnb+kIBt46gLoJURGeilGn7rKPDepR8ZQX5E1UVTU/zw1FFS4grq2nobs9jLP/QItCQOSKpZoiTbh5w==
 
 markdown-extensions@^1.0.0:
   version "1.1.1"
@@ -5396,6 +5396,7 @@ streamx@^2.13.0, streamx@^2.15.0:
     bare-events "^2.2.0"
 
 "string-width-cjs@npm:string-width@^4.2.0", string-width@^4.1.0:
+  name string-width-cjs
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
@@ -5462,6 +5463,7 @@ stringify-entities@^4.0.0:
     character-entities-legacy "^3.0.0"
 
 "strip-ansi-cjs@npm:strip-ansi@^6.0.1", strip-ansi@^6.0.0, strip-ansi@^6.0.1:
+  name strip-ansi-cjs
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==

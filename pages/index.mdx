@@ -1,25 +1,38 @@
 ---
-title: Webhood - Self-hosted URL scanner
+title: Webhood - Private URL scanner
 description: Simple, private URL scanner keeping your sensitive data on your own premises.
 ---
 
 import Image from "next/image"
 import Link from "next/link"
+import {Cloud, Building, CloudUpload} from "lucide-react"
 
 import { Feature, Features } from "../components/features"
-import testImage from "../public/example-ups-dark.png"
-import testImageWhite from "../public/example-ups-light.png"
-import phishingImage from "../public/phishing.png"
+import {FeatureItem} from "../components/ui/featureitem"
+import testImage from "../public/example-ms-dark.png"
+import testImageWhite from "../public/example-ms-light.png"
+
+import featureImage from "../public/ui-features-ms-dark.png"
+import featureImageLight from "../public/ui-features-ms-light.png"
+
+
 import phishStory from "../public/phishstory.png"
 import styles from "./index.module.css"
 
-<div className="home-content">
-    <div className="content-container">
+<div className="container">
+    <div className="flex flex-row gap-2 items-center">
+    <div className="flex flex-col gap-4 lg:w-1/2 w-full">
         <h1 className="headline">Scan suspicious sites <br className='sm:block hidden'/>securely.</h1>
-        <p className="subtitle">Simple, self-hosted URL scanner <br className='sm:block hidden'/>keeping your sensitive data on your own premises.</p>
-        <p className="subtitle">
-            <Link className={styles.cta} href="/docs">Get started <span>→</span></Link>
+        <p className="subtitle">Simple, private URL scanner <br className='sm:block hidden'/>keeping your sensitive data with you.</p>
+        <p className="subtitle flex flex-row gap-2 items-center mt-2">
+            <Link className="bg-purple-500  px-5 py-3 text-base md:text-xl border-0 rounded-full text-white" href="/docs/deployment">Deploy <span>→</span></Link>
+            <Link className="px-5 py-3 text-base md:text-xl border-0 rounded-full" href="https://cloud.webhood.io/login"> Try hosted<span>→</span></Link>
         </p>
+    </div>
+    <div className="w-1/2 lg:block hidden overflow-hidden rounded-3xl mt-2 shadow">
+                    <Image className="dark:hidden block" src={testImageWhite} priority={true}/>
+                    <Image className="dark:block hidden" src={testImage} priority={true}/>
+                    </div>
     </div>
 
     <style jsx>{`
@@ -214,10 +227,10 @@ import styles from "./index.module.css"
     <div className="mt-32 py-16 bg-[#f3f4f6] dark:bg-[#000] dark:border-[#262626] border-b-[1px] border-solid border-[#e5e7eb] max-w-[90rem] p-6">
         <div className="-mt-32">
             <Features>
-                <Feature index={0} large centered id="docs-card" href="/docs/">
-                    <Image src={testImageWhite} priority={true}/>
-                    <Image src={testImage} priority={true}/>
-                    <h3>Get scan results <br className="show-on-mobile"/>in seconds.</h3>
+                <Feature index={0} large id="docs-card" href="/docs/">
+                    <Image src={featureImageLight} priority={true}/>
+                    <Image src={featureImage} priority={true}/>
+                    <h3>View scan results <br className="show-on-mobile"/>in seconds.</h3>
                 </Feature>
                 <Feature index={1} centered className="card-with-border" href="/docs">
                     <div className="h-full flex flex-col justify-between">
@@ -241,29 +254,29 @@ import styles from "./index.module.css"
                         See full <Link href="/docs/deployment">deployment guide for more</Link>.
                     </div>
                 </Feature>
-                <Feature index={5} large id="search-card">
+                <Feature index={5} large>
                     <div style={{ zIndex: 2}}>
-                        <h3>Full HTML inspector, <br/>zero-config needed.</h3>
-                        <p>Webhood integrates a full code inspector for viewing the HTML source code of the scanned site.</p>
+                        <h3>Multiple deployment options.</h3>
+                        <div className="flex flex-col gap-2 pt-2">
+                        <FeatureItem Logo={Cloud} title="Cloud hosted">
+                            <p>Deploy Webhood in completely managed environment. You remain in control of all your data.
+                            <Link className="text-purple-500" href="/docs/cloud/introduction">Learn more</Link></p>
+                        </FeatureItem>
+                        <FeatureItem Logo={Building} title="On-premise">
+                        <>
+                        <p>Run your own management console and scanners on your own premise. Even go full air-gapped and it simply works.</p>
+                            <p>You can be run everything as a simple standalone Docker container or as a full Kubernetes deployment. 
+                           <Link className="text-purple-500" href="/docs/deployment">Learn more</Link></p> 
+
+                            </>
+                        </FeatureItem>
+                        <FeatureItem Logo={CloudUpload} title="Hybrid">
+                        <p>Run the management console in the cloud and scanners on-premise. Or, run everything yourself, but take advantage of the Scanner API to get ahead of the hackers.
+                           <Link className="text-purple-500" href="/docs/cloud/scanner-cloud">Learn more about Scanner API</Link></p> 
+
+                        </FeatureItem>
+                        </div>
                     </div>
-                    <div className="absolute w-full h-full inset-0 hidden sm:block bg-[linear-gradient(to_right,white_250px,_transparent)] dark:bg-[linear-gradient(to_right,#202020_250px,_transparent)] z-[1]"/>
-                    <video autoPlay="autoplay" loop muted playsInline className="dark:hidden block">
-                        <source src="/scan.mp4" type="video/mp4"/>
-                    </video>
-                    <video autoPlay="autoplay" loop muted playsInline className="dark:block hidden -translate-x-4">
-                        <source src="/scan.mp4" type="video/mp4"/>
-                    </video>
-                </Feature>
-                <Feature index={6} large id="fs-card">
-                    <Image
-                        className={"absolute top-0 left-0 w-full h-full object-cover"}
-                        src={phishingImage} alt="File-system routing" width={750} height={288}/>
-                    <h3 className={"text-white"}>Catch the bad guys phishing, <br/>before they catch your users.</h3>
-                </Feature>
-                <Feature index={7}>
-                    <h3>And more...</h3>
-                    <p>We are currently in Beta-phase constantly improving the capabilities.<br/>There are lot of new possibilities to be explored and more features are coming.</p>
-                    <p className="subtitle"><Link className="!no-underline" href="/docs">Start using Webhood →</Link></p>
                 </Feature>
             </Features>
         </div>

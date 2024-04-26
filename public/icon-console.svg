@@ -43,7 +43,7 @@
         }
         @media (prefers-color-scheme: dark) {
             path {
-                fill: #fff;
+                fill: #000;
             }
         }
         #g8411 {
@@ -51,7 +51,7 @@
         }
         @media (prefers-color-scheme: dark) {
             #g8411 {
-                fill: #fff;
+                fill: #000;
             }
         }
     </style>
