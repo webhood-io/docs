@@ -1,0 +1,710 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Webhood - v1 API",
+    "description": "This is the OpenAPI 3.1.0 schema for the Webhood URL scanner API",
+    "contact": {
+      "email": "contact@webhood.io"
+    },
+    "version": "1.1.0"
+  },
+  "externalDocs": {
+    "description": "Find out more about Webhood URL Scanner",
+    "url": "https://webhood.io"
+  },
+  "servers": [
+    {
+      "url": "{host}/api/v1",
+      "variables": {
+        "host": {
+          "default": "https://localhost:8443",
+          "description": "The host running Webhood"
+        }
+      }
+    },
+    {
+      "url": "https://demo.webhood.io/api/v1"
+    }
+  ],
+  "tags": [
+    {
+      "name": "scanner",
+      "description": "Operations about scanner"
+    }
+  ],
+  "paths": {
+    "/scans": {
+      "post": {
+        "summary": "Creates a new scan",
+        "description": "Create a new scan to be initiated by the scanner",
+        "operationId": "initScan",
+        "tags": [
+          "scanner"
+        ],
+        "requestBody": {
+          "description": "Create a new scan to be initiated by the scanner",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScanRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "Successfully initiated scan",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": "xdxwguyzz2asq4j",
+                  "created": "2023-03-28T17:30:01.013525+00:00",
+                  "updated": "2023-03-28T17:30:01.013525+00:00",
+                  "done_at": "",
+                  "slug": "google.com-1680024600766",
+                  "url": "http://google.com",
+                  "final_url": "",
+                  "status": "pending",
+                  "screenshots": [],
+                  "html": [],
+                  "errorMessage": ""
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ScanRequest"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Something went wrong while processing your request"
+          },
+          "401": {
+            "description": "The request requires valid record authorization token to be set"
+          },
+          "403": {
+            "description": "Authentication or authorization failure"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "scanner"
+        ],
+        "summary": "Get past scans",
+        "operationId": "getScans",
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Filter",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sort scans by field. Prefix with '-' to sort in descending order",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit the number of scans returned",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset for the scans returned. For example, if you want to skip the first 10 scans, set offset to 10",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Scan"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Something went wrong while processing your request"
+          },
+          "401": {
+            "description": "The request requires valid record authorization token to be set"
+          },
+          "403": {
+            "description": "Authentication or authorization failure"
+          }
+        }
+      }
+    },
+    "/scans/{scanId}": {
+      "get": {
+        "tags": [
+          "scanner"
+        ],
+        "summary": "Get scan by ID",
+        "description": "Returns a single scan",
+        "operationId": "getScanById",
+        "parameters": [
+          {
+            "name": "scanId",
+            "in": "path",
+            "description": "ID of scan to return",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Scan"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "401": {
+            "description": "The request requires valid record authorization token to be set"
+          },
+          "404": {
+            "description": "Scan not found"
+          },
+          "403": {
+            "description": "Authentication or authorization failure"
+          }
+        }
+      }
+    },
+    "/scans/{scanId}/screenshot": {
+      "get": {
+        "tags": [
+          "scanner"
+        ],
+        "summary": "Get screenshot by scan ID",
+        "description": "Returns a screenshot of a successful scan",
+        "operationId": "getScreenshotByScanId",
+        "parameters": [
+          {
+            "name": "scanId",
+            "in": "path",
+            "description": "ID of scan to return",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "image/png": {}
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "401": {
+            "description": "The request requires valid record authorization token to be set"
+          },
+          "404": {
+            "description": "Scan not found"
+          },
+          "403": {
+            "description": "Authentication or authorization failure"
+          }
+        }
+      }
+    },
+    "/scans/{scanId}/trace": {
+      "get": {
+        "tags": [
+          "scanner"
+        ],
+        "summary": "Get trace by scan ID",
+        "description": "Returns the trace of a successful scan",
+        "operationId": "getTraceByScanId",
+        "parameters": [
+          {
+            "name": "scanId",
+            "in": "path",
+            "description": "ID of scan to return",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "401": {
+            "description": "The request requires valid record authorization token to be set"
+          },
+          "404": {
+            "description": "Trace not found in the scan"
+          },
+          "403": {
+            "description": "Authentication or authorization failure"
+          }
+        }
+      }
+    },
+    "/scans/{scanId}/html": {
+      "get": {
+        "tags": [
+          "scanner"
+        ],
+        "summary": "Get HTML content by scan ID",
+        "description": "Returns the HTML of a successful scan",
+        "operationId": "getHtmlByScanId",
+        "parameters": [
+          {
+            "name": "scanId",
+            "in": "path",
+            "description": "ID of scan to return",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "401": {
+            "description": "The request requires valid record authorization token to be set"
+          },
+          "404": {
+            "description": "HTML not found in the scan"
+          },
+          "403": {
+            "description": "Authentication or authorization failure"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ScanRequest": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "examples": [
+              "https://google.com"
+            ]
+          }
+        }
+      },
+      "ProtocolNetworkResourceTiming": {
+        "description": "Timing information for the request.",
+        "properties": {
+          "connectEnd": {
+            "description": "Connected to the remote host.",
+            "type": "number"
+          },
+          "connectStart": {
+            "description": "Started connecting to the remote host.",
+            "type": "number"
+          },
+          "dnsEnd": {
+            "description": "Finished DNS address resolve.",
+            "type": "number"
+          },
+          "dnsStart": {
+            "description": "Started DNS address resolve.",
+            "type": "number"
+          },
+          "proxyEnd": {
+            "description": "Finished resolving proxy.",
+            "type": "number"
+          },
+          "proxyStart": {
+            "description": "Started resolving proxy.",
+            "type": "number"
+          },
+          "pushEnd": {
+            "description": "Time the server finished pushing request.",
+            "type": "number"
+          },
+          "pushStart": {
+            "description": "Time the server started pushing request.",
+            "type": "number"
+          },
+          "receiveHeadersEnd": {
+            "description": "Finished receiving response headers.",
+            "type": "number"
+          },
+          "receiveHeadersStart": {
+            "description": "Started receiving response headers.",
+            "type": "number"
+          },
+          "requestTime": {
+            "description": "Timing's requestTime is a baseline in seconds, while the other numbers are ticks in\nmilliseconds relatively to this requestTime.",
+            "type": "number"
+          },
+          "sendEnd": {
+            "description": "Finished sending request.",
+            "type": "number"
+          },
+          "sendStart": {
+            "description": "Started sending request.",
+            "type": "number"
+          },
+          "sslEnd": {
+            "description": "Finished SSL handshake.",
+            "type": "number"
+          },
+          "sslStart": {
+            "description": "Started SSL handshake.",
+            "type": "number"
+          },
+          "workerFetchStart": {
+            "description": "Started fetch event.",
+            "type": "number"
+          },
+          "workerReady": {
+            "description": "Finished Starting ServiceWorker.",
+            "type": "number"
+          },
+          "workerRespondWithSettled": {
+            "description": "Settled fetch event respondWith promise.",
+            "type": "number"
+          },
+          "workerStart": {
+            "description": "Started running ServiceWorker.",
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
+      "Record": {
+        "type": "object"
+      },
+      "RemoteAddress": {
+        "properties": {
+          "ip": {
+            "type": "string"
+          },
+          "port": {
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
+      "ScreenshotRate": {
+        "enum": [
+          "slow",
+          "balanced",
+          "fast"
+        ],
+        "type": "string"
+      },
+      "ScanData": {
+        "properties": {
+          "document": {
+            "properties": {
+              "links": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "origin": {
+                "type": "string"
+              },
+              "protocol": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "request": {
+            "properties": {
+              "headers": {
+                "$ref": "#/components/schemas/Record"
+              },
+              "method": {
+                "type": "string"
+              },
+              "postData": {
+                "type": "string"
+              },
+              "redirectChain": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "resourceType": {
+                "type": "string"
+              },
+              "ts": {
+                "type": "number"
+              },
+              "type": {
+                "const": "request",
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "response": {
+            "properties": {
+              "headers": {
+                "$ref": "#/components/schemas/Record"
+              },
+              "remoteAddress": {
+                "$ref": "#/components/schemas/RemoteAddress"
+              },
+              "securityDetails": {
+                "properties": {
+                  "issuer": {
+                    "type": "string"
+                  },
+                  "protocol": {
+                    "type": "string"
+                  },
+                  "subjectAlternativeNames": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "subjectName": {
+                    "type": "string"
+                  },
+                  "validFrom": {
+                    "type": "number"
+                  },
+                  "validTo": {
+                    "type": "number"
+                  }
+                },
+                "type": "object"
+              },
+              "status": {
+                "type": "number"
+              },
+              "statusText": {
+                "type": "string"
+              },
+              "timing": {
+                "$ref": "#/components/schemas/ProtocolNetworkResourceTiming"
+              },
+              "ts": {
+                "type": "number"
+              },
+              "type": {
+                "const": "response",
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "version": {
+            "const": "1.0",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Scan": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the scan",
+            "examples": [
+              "xdxwguyzz2asq4j"
+            ]
+          },
+          "created": {
+            "type": "string",
+            "description": "Date and time when the scan was created",
+            "format": "date-time",
+            "examples": [
+              "2023-03-28T17:30:01.013525+00:00"
+            ]
+          },
+          "updated": {
+            "type": "string",
+            "description": "Date and time when the scan was last updated",
+            "format": "date-time",
+            "examples": [
+              "2023-03-28T17:30:01.013525+00:00"
+            ]
+          },
+          "done_at": {
+            "type": "string",
+            "description": "Date and time when the scan was completed",
+            "format": "date-time",
+            "examples": [
+              "2023-03-28T17:35:01.013525+00:00"
+            ]
+          },
+          "slug": {
+            "type": "string",
+            "description": "Unique identifier for the scan that can be used to generate a link to the scan",
+            "examples": [
+              "google.com-1680024600766"
+            ]
+          },
+          "url": {
+            "type": "string",
+            "description": "URL that was scanned",
+            "examples": [
+              "https://google.com"
+            ]
+          },
+          "final_url": {
+            "type": "string",
+            "description": "URL that was scanned after redirects",
+            "examples": [
+              "https://www.google.com/"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "description": "Scan Status",
+            "examples": [
+              "done"
+            ],
+            "enum": [
+              "pending",
+              "done",
+              "error",
+              "running"
+            ]
+          },
+          "screenshots": {
+            "type": "array",
+            "description": "Identifiers for files containing the screenshots",
+            "items": {
+              "type": "string",
+              "description": "Identifier for files containing the screenshots"
+            },
+            "examples": [
+              [
+                "0e158365_cb22_47cc_9617_c944c5b80a01_lK0p6dA6bM.png"
+              ]
+            ]
+          },
+          "html": {
+            "type": "array",
+            "description": "identifiers for other files gathered during the scan",
+            "items": {
+              "type": "string",
+              "description": "Identifier for other files gathered during the scan"
+            },
+            "examples": [
+              [
+                "bf1a2cfb_7e3b_4d5d_8705_07891d883d5c_57BDbD8BrR.html",
+                "trace_ir1b4f30x2y5umn_SwUKj9ocpw.json"
+              ]
+            ]
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "Description of what error occurred during the scan if the scan did not finish successfully",
+            "examples": [
+              "",
+              "Error while getting final url, url might be invalid. Final URL was: chrome-error://chromewebdata/"
+            ]
+          },
+          "scanData": {
+            "type": "string",
+            "description": "Data about the target of the scan",
+            "$ref": "#/components/schemas/ScanData",
+            "examples": [
+              "{        \"document\": {\r\n            \"links\": [\r\n                \"https:\/\/mail.google.com\/mail\/&ogbl\",\r\n                \"https:\/\/www.google.com\/imghp?hl=fi&ogbl\",\r\n                \"https:\/\/www.google.fi\/intl\/fi\/about\/products\",\r\n                \"https:\/\/accounts.google.com\/ServiceLogin?hl=fi&passive=true&continue=https:\/\/www.google.com\/&ec=GAZAmgQ\",\r\n                \"https:\/\/www.google.com\/setprefs?sig=0_RfAoyvF_bNGhPkGb5Y4-v95my00%3D&hl=sv&source=homepage&sa=X&ved=0ahUKEwi-94bRhOiFAxX2BxAIHaKjDbwQ2ZgBCBQ\",\r\n                \"https:\/\/www.google.com\/setprefs?sig=0_RfAoyvF_bNGhPkGb5Y4-v95my00%3D&hl=en&source=homepage&sa=X&ved=0ahUKEwi-94bRhOiFAxX2BxAIHaKjDbwQ2ZgBCBU\",\r\n                \"https:\/\/about.google\/?utm_source=google-FI&utm_medium=referral&utm_campaign=hp-footer&fg=1\",\r\n                \"https:\/\/www.google.com\/intl\/fi_fi\/ads\/?subid=ww-ww-et-g-awa-a-g_hpafoot1_1!o2&utm_source=google.com&utm_medium=referral&utm_campaign=google_hpafooter&fg=1\",\r\n                \"https:\/\/www.google.com\/services\/?subid=ww-ww-et-g-awa-a-g_hpbfoot1_1!o2&utm_source=google.com&utm_medium=referral&utm_campaign=google_hpbfooter&fg=1\",\r\n                \"https:\/\/google.com\/search\/howsearchworks\/?fg=1\",\r\n                \"https:\/\/sustainability.google\/?utm_source=googlehpfooter&utm_medium=housepromos&utm_campaign=bottom-footer&utm_content=\",\r\n                \"https:\/\/policies.google.com\/privacy?hl=fi&fg=1\",\r\n                \"https:\/\/policies.google.com\/terms?hl=fi&fg=1\",\r\n                \"https:\/\/www.google.com\/preferences?hl=fi&fg=1\",\r\n                \"https:\/\/www.google.com\/advanced_search?hl=fi&fg=1\",\r\n                \"https:\/\/www.google.com\/history\/privacyadvisor\/search\/unauth?utm_source=googlemenu&fg=1&cctld=com\",\r\n                \"https:\/\/www.google.com\/history\/optout?hl=fi&fg=1\",\r\n                \"https:\/\/support.google.com\/websearch\/?p=ws_results_help&hl=fi&fg=1\",\r\n                \"https:\/\/policies.google.com\/technologies\/cookies?utm_source=ucbs&hl=fi\",\r\n                \"https:\/\/policies.google.com\/privacy?hl=fi&fg=1&utm_source=ucbs\",\r\n                \"https:\/\/policies.google.com\/terms?hl=fi&fg=1&utm_source=ucbs\"\r\n            ],\r\n            \"origin\": \"https:\/\/www.google.com\",\r\n            \"protocol\": \"https:\",\r\n            \"title\": \"Google\",\r\n            \"url\": \"https:\/\/www.google.com\/\"\r\n        },\r\n        \"meta\": {\r\n            \"completedAt\": \"2024-04-29T18:19:11.759Z\",\r\n            \"duration\": 3.222,\r\n            \"initiatedAt\": \"2024-04-29T18:19:07.309Z\",\r\n            \"initiatedBy\": \"admin2\",\r\n            \"initiatedByType\": \"user\",\r\n            \"scannedByScanner\": \"cq933leo2vp4gkt\",\r\n            \"startedAt\": \"2024-04-29T18:19:08.537Z\"\r\n        },\r\n        \"request\": {\r\n            \"headers\": {\r\n                \"sec-ch-ua\": \"\\\"Chromium\\\";v=\\\"124\\\", \\\"Google Chrome\\\";v=\\\"124\\\", \\\";Not A Brand\\\";v=\\\"99\\\"\",\r\n                \"sec-ch-ua-mobile\": \"?0\",\r\n                \"sec-ch-ua-platform\": \"\\\"Mac OS X\\\"\",\r\n                \"upgrade-insecure-requests\": \"1\",\r\n                \"user-agent\": \"Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/124.0.0.0 Safari\/537.36\"\r\n            },\r\n            \"method\": \"GET\",\r\n            \"redirectChain\": [\r\n                \"https:\/\/google.com\/\"\r\n            ],\r\n            \"resourceType\": \"document\",\r\n            \"ts\": 0,\r\n            \"type\": \"request\",\r\n            \"url\": \"https:\/\/www.google.com\/\"\r\n        },\r\n        \"response\": {\r\n            \"headers\": {\r\n                \"accept-ch\": \"Sec-CH-UA-Platform\\nSec-CH-UA-Platform-Version\\nSec-CH-UA-Full-Version\\nSec-CH-UA-Arch\\nSec-CH-UA-Model\\nSec-CH-UA-Bitness\\nSec-CH-UA-Full-Version-List\\nSec-CH-UA-WoW64\",\r\n                \"alt-svc\": \"h3=\\\":443\\\"; ma=2592000,h3-29=\\\":443\\\"; ma=2592000\",\r\n                \"cache-control\": \"private, max-age=0\",\r\n                \"content-encoding\": \"br\",\r\n                \"content-length\": \"77480\",\r\n                \"content-security-policy-report-only\": \"object-src 'none';base-uri 'self';script-src 'nonce-vK_kKqN9f2o_7sZd7wO8AQ' 'strict-dynamic' 'report-sample' 'unsafe-eval' 'unsafe-inline' https: http:;report-uri https:\/\/csp.withgoogle.com\/csp\/gws\/other-hp\",\r\n                \"content-type\": \"text\/html; charset=UTF-8\",\r\n                \"cross-origin-opener-policy\": \"same-origin-allow-popups; report-to=\\\"gws\\\"\",\r\n                \"date\": \"Mon, 29 Apr 2024 18:19:09 GMT\",\r\n                \"expires\": \"-1\",\r\n                \"origin-trial\": \"Ap+qNlnLzJDKSmEHjzM5ilaa908GuehlLqGb6ezME5lkhelj20qVzfv06zPmQ3LodoeujZuphAolrnhnPA8w4AIAAABfeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJQZXJtaXNzaW9uc1BvbGljeVVubG9hZCIsImV4cGlyeSI6MTY4NTY2Mzk5OX0=\\nAvudrjMZqL7335p1KLV2lHo1kxdMeIN0dUI15d0CPz9dovVLCcXk8OAqjho1DX4s6NbHbA\/AGobuGvcZv0drGgQAAAB9eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJCYWNrRm9yd2FyZENhY2hlTm90UmVzdG9yZWRSZWFzb25zIiwiZXhwaXJ5IjoxNjkxNTM5MTk5LCJpc1N1YmRvbWFpbiI6dHJ1ZX0=\",\r\n                \"p3p\": \"CP=\\\"This is not a P3P policy! See g.co\/p3phelp for more info.\\\"\",\r\n                \"permissions-policy\": \"unload=()\",\r\n                \"report-to\": \"{\\\"group\\\":\\\"gws\\\",\\\"max_age\\\":2592000,\\\"endpoints\\\":[{\\\"url\\\":\\\"https:\/\/csp.withgoogle.com\/csp\/report-to\/gws\/other\\\"}]}\",\r\n                \"server\": \"gws\",\r\n                \"set-cookie\": \"AEC=AQTF6HyjF6sq1wt1Q72VIIwha6OGF0Dj9kTUGZt41mhL7KEgBJ5yx8MZ2Q; expires=Sat, 26-Oct-2024 18:19:09 GMT; path=\/; domain=.google.com; Secure; HttpOnly; SameSite=lax\\n__Secure-ENID=19.SE=NmKwz_C6cgOYbE2vYyLqAmUB0J09aX_0X8szETovNQI9ohdn_Gk0oWWuZLBQW2Baj0_Nz2zgdHqGqMZNujH8rFOZqox9kfAi_mpT65KcLu_ZK5e5RejRn6Sy_CPRk2nShkBLXYI54UqxF6o_Q9Ko_qxQU4d6BbUf-acYKs3MC2XoG7lMQFU9taev; expires=Fri, 30-May-2025 10:37:27 GMT; path=\/; domain=.google.com; Secure; HttpOnly; SameSite=lax\",\r\n                \"strict-transport-security\": \"max-age=31536000\",\r\n                \"x-frame-options\": \"SAMEORIGIN\",\r\n                \"x-xss-protection\": \"0\"\r\n            },\r\n            \"remoteAddress\": {\r\n                \"ip\": \"216.58.211.228\",\r\n                \"port\": 443\r\n            },\r\n            \"securityDetails\": {\r\n                \"issuer\": \"GTS CA 1C3\",\r\n                \"protocol\": \"QUIC\",\r\n                \"subjectAlternativeNames\": [\r\n                    \"*.google.com\",\r\n                    \"*.appengine.google.com\",\r\n                    \"*.bdn.dev\",\r\n                    \"*.origin-test.bdn.dev\",\r\n                    \"*.cloud.google.com\",\r\n                    \"*.crowdsource.google.com\",\r\n                    \"*.datacompute.google.com\",\r\n                    \"*.google.ca\",\r\n                    \"*.google.cl\",\r\n                    \"*.google.co.in\",\r\n                    \"*.google.co.jp\",\r\n                    \"*.google.co.uk\",\r\n                    \"*.google.com.ar\",\r\n                    \"*.google.com.au\",\r\n                    \"*.google.com.br\",\r\n                    \"*.google.com.co\",\r\n                    \"*.google.com.mx\",\r\n                    \"*.google.com.tr\",\r\n                    \"*.google.com.vn\",\r\n                    \"*.google.de\",\r\n                    \"*.google.es\",\r\n                    \"*.google.fr\",\r\n                    \"*.google.hu\",\r\n                    \"*.google.it\",\r\n                    \"*.google.nl\",\r\n                    \"*.google.pl\",\r\n                    \"*.google.pt\",\r\n                    \"*.googleapis.cn\",\r\n                    \"*.googlevideo.com\",\r\n                    \"*.gstatic.cn\",\r\n                    \"*.gstatic-cn.com\",\r\n                    \"googlecnapps.cn\",\r\n                    \"*.googlecnapps.cn\",\r\n                    \"googleapps-cn.com\",\r\n                    \"*.googleapps-cn.com\",\r\n                    \"gkecnapps.cn\",\r\n                    \"*.gkecnapps.cn\",\r\n                    \"googledownloads.cn\",\r\n                    \"*.googledownloads.cn\",\r\n                    \"recaptcha.net.cn\",\r\n                    \"*.recaptcha.net.cn\",\r\n                    \"recaptcha-cn.net\",\r\n                    \"*.recaptcha-cn.net\",\r\n                    \"widevine.cn\",\r\n                    \"*.widevine.cn\",\r\n                    \"ampproject.org.cn\",\r\n                    \"*.ampproject.org.cn\",\r\n                    \"ampproject.net.cn\",\r\n                    \"*.ampproject.net.cn\",\r\n                    \"google-analytics-cn.com\",\r\n                    \"*.google-analytics-cn.com\",\r\n                    \"googleadservices-cn.com\",\r\n                    \"*.googleadservices-cn.com\",\r\n                    \"googlevads-cn.com\",\r\n                    \"*.googlevads-cn.com\",\r\n                    \"googleapis-cn.com\",\r\n                    \"*.googleapis-cn.com\",\r\n                    \"googleoptimize-cn.com\",\r\n                    \"*.googleoptimize-cn.com\",\r\n                    \"doubleclick-cn.net\",\r\n                    \"*.doubleclick-cn.net\",\r\n                    \"*.fls.doubleclick-cn.net\",\r\n                    \"*.g.doubleclick-cn.net\",\r\n                    \"doubleclick.cn\",\r\n                    \"*.doubleclick.cn\",\r\n                    \"*.fls.doubleclick.cn\",\r\n                    \"*.g.doubleclick.cn\",\r\n                    \"dartsearch-cn.net\",\r\n                    \"*.dartsearch-cn.net\",\r\n                    \"googletraveladservices-cn.com\",\r\n                    \"*.googletraveladservices-cn.com\",\r\n                    \"googletagservices-cn.com\",\r\n                    \"*.googletagservices-cn.com\",\r\n                    \"googletagmanager-cn.com\",\r\n                    \"*.googletagmanager-cn.com\",\r\n                    \"googlesyndication-cn.com\",\r\n                    \"*.googlesyndication-cn.com\",\r\n                    \"*.safeframe.googlesyndication-cn.com\",\r\n                    \"app-measurement-cn.com\",\r\n                    \"*.app-measurement-cn.com\",\r\n                    \"gvt1-cn.com\",\r\n                    \"*.gvt1-cn.com\",\r\n                    \"gvt2-cn.com\",\r\n                    \"*.gvt2-cn.com\",\r\n                    \"2mdn-cn.net\",\r\n                    \"*.2mdn-cn.net\",\r\n                    \"googleflights-cn.net\",\r\n                    \"*.googleflights-cn.net\",\r\n                    \"admob-cn.com\",\r\n                    \"*.admob-cn.com\",\r\n                    \"googlesandbox-cn.com\",\r\n                    \"*.googlesandbox-cn.com\",\r\n                    \"*.safenup.googlesandbox-cn.com\",\r\n                    \"*.gstatic.com\",\r\n                    \"*.metric.gstatic.com\",\r\n                    \"*.gvt1.com\",\r\n                    \"*.gcpcdn.gvt1.com\",\r\n                    \"*.gvt2.com\",\r\n                    \"*.gcp.gvt2.com\",\r\n                    \"*.url.google.com\",\r\n                    \"*.youtube-nocookie.com\",\r\n                    \"*.ytimg.com\",\r\n                    \"android.com\",\r\n                    \"*.android.com\",\r\n                    \"*.flash.android.com\",\r\n                    \"g.cn\",\r\n                    \"*.g.cn\",\r\n                    \"g.co\",\r\n                    \"*.g.co\",\r\n                    \"goo.gl\",\r\n                    \"www.goo.gl\",\r\n                    \"google-analytics.com\",\r\n                    \"*.google-analytics.com\",\r\n                    \"google.com\",\r\n                    \"googlecommerce.com\",\r\n                    \"*.googlecommerce.com\",\r\n                    \"ggpht.cn\",\r\n                    \"*.ggpht.cn\",\r\n                    \"urchin.com\",\r\n                    \"*.urchin.com\",\r\n                    \"youtu.be\",\r\n                    \"youtube.com\",\r\n                    \"*.youtube.com\",\r\n                    \"youtubeeducation.com\",\r\n                    \"*.youtubeeducation.com\",\r\n                    \"youtubekids.com\",\r\n                    \"*.youtubekids.com\",\r\n                    \"yt.be\",\r\n                    \"*.yt.be\",\r\n                    \"android.clients.google.com\",\r\n                    \"developer.android.google.cn\",\r\n                    \"developers.android.google.cn\",\r\n                    \"source.android.google.cn\",\r\n                    \"developer.chrome.google.cn\",\r\n                    \"web.developers.google.cn\",\r\n                    \"codelabs.developers.google.cn\"\r\n                ],\r\n                \"subjectName\": \"*.google.com\",\r\n                \"validFrom\": 1712558096,\r\n                \"validTo\": 1719815695\r\n            },\r\n            \"status\": 200,\r\n            \"timing\": {\r\n                \"connectEnd\": 179.609,\r\n                \"connectStart\": 56.744,\r\n                \"dnsEnd\": 56.445,\r\n                \"dnsStart\": 0.169,\r\n                \"proxyEnd\": -1,\r\n                \"proxyStart\": -1,\r\n                \"pushEnd\": 0,\r\n                \"pushStart\": 0,\r\n                \"receiveHeadersEnd\": 334.457,\r\n                \"receiveHeadersStart\": 334.283,\r\n                \"requestTime\": 30908.356175,\r\n                \"sendEnd\": 179.928,\r\n                \"sendStart\": 179.766,\r\n                \"sslEnd\": 179.609,\r\n                \"sslStart\": 56.744,\r\n                \"workerFetchStart\": -1,\r\n                \"workerReady\": -1,\r\n                \"workerRespondWithSettled\": -1,\r\n                \"workerStart\": -1\r\n            },\r\n            \"ts\": 0,\r\n            \"type\": \"response\",\r\n            \"url\": \"https:\/\/www.google.com\/\"\r\n        },\r\n        \"scanOptions\": {},\r\n        \"scannerConfig\": {\r\n            \"lang\": \"\",\r\n            \"ua\": \"\",\r\n            \"useSkipCookiePrompt\": true,\r\n            \"useStealth\": true\r\n        },\r\n        \"version\": \"1.1\"\r\n    }"
+            ]
+          }
+        }
+      }
+    },
+    "requestBodies": {
+      "Scan": {
+        "description": "Scan object that needs to be input when creating new scan",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ScanRequest"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}
