@@ -91,7 +91,7 @@
         "tags": [
           "scanner"
         ],
-        "summary": "Get past scans, optinally filter by status",
+        "summary": "Get past scans, optionally filter by status",
         "operationId": "getScans",
         "parameters": [
           {
@@ -183,7 +183,7 @@
         }
       }
     },
-       "/scans/{scanId}/screenshot": {
+    "/scans/{scanId}/screenshot": {
       "get": {
         "tags": [
           "scanner"
