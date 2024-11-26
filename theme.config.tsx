@@ -2,6 +2,8 @@ import React from "react"
 import { useRouter } from "next/router"
 import { DocsThemeConfig, useConfig } from "nextra-theme-docs"
 
+import ServiceStatus from "./components/servicestatus"
+
 const logo = (
   <span>
     <svg
@@ -47,6 +49,7 @@ const config: DocsThemeConfig = {
         </a>
         . Webhood is product of ST4 Cyber Oy, an incorporated business based in
         Finland 🇫🇮🇪🇺
+        <ServiceStatus />
       </span>
     ),
   },
