@@ -28,17 +28,21 @@ export default function ServiceStatus() {
     fetch("https://status.webhood.io/api/status")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
         setStatus(data)
-        setLoading(false)
       })
       .catch((err) => {
         console.error(err)
         setError(err)
-        setLoading(false)
       })
+      .finally(() => setLoading(false))
   }, [])
 
+  if (loading) {
+    return <p>Loading service status...</p>
+  }
+  if (error) {
+    return <p>An error occurred while fetching service status</p>
+  }
   return (
     <div>
       <Link href="https://status.webhood.io" target="_blank">
