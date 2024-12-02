@@ -119,7 +119,7 @@
   .feature h3 {
     font-size: 34px;
     font-size: min(34px, max(4vw, 22px));
-    text-align: center;
+    text-align: left;
   }
   .feature :global(.show-on-mobile) {
     display: block;
